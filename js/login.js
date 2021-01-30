@@ -17,13 +17,13 @@ $(document).on("click", "#pin-code", function(){
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
         PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
-        // loop through coins.coin and login all coins simultaneously
-        let coins = ModelViewController.coins.coin;
-        ModelViewController.returnState();
-        for (var k=0;k<coins.length;k++) {
-            const selectCoins = coins[k];
-            PassportPipeline.performOperation(selectCoins, ModelViewController.initCoin);
-        };
+            // loop through coins.coin and register all coins simultaneously
+            let coins = ModelViewController.coins.coin;
+            ModelViewController.returnState();
+            for (var j=0;j<coins.length;j++) {
+                const allCoins = coins[j];
+              PassportPipeline.performOperation(allCoins, ModelViewController.initCoin);
+            };
     }
 });
 
