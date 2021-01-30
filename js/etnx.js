@@ -105,17 +105,11 @@ var ModelViewController = {
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
     },
-    formatCoinDisplayUnits: function(coins, coinSymbol, units){
-    const coinUnits = coinSymbol==="crfi" ? 1000000 : coinSymbol==="etnx" ? 1000000 : coinSymbol==="etnxp" ? 1000000 : coinSymbol==="etnxc" ? 1000000 : coinSymbol==="ltnx" ? 1000000 : coinSymbol==="gldx" ? 1000000 : units;
-    var coinDecimalPlaces = coinUnits.toString().length - 1;
-    var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
-    return balancedCoins;
-    },
     fillData: function(){      
 
         var etnxData = this.getCoinData("etnx");
         if(etnxData != null){
-            const etnxLockedBalance = this.formatCoinDisplayUnits(etnxData.balances.balance, "etnx")
+            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx").toFixed(6)
             const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
             $("#etnx-wallet").html(etnxData.address);
             console.log(etnxData);
@@ -125,7 +119,7 @@ var ModelViewController = {
         
         var etnxpData = this.getCoinData("etnxp");
         if(etnxpData != null){
-            const etnxpLockedBalance = this.formatCoinDisplayUnits(etnxpData.balances.balance, "etnxp")
+            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp").toFixed(6)
             const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
             $("#etnxp-wallet").html(etnxpData.address);
             console.log(etnxpData);
@@ -135,7 +129,7 @@ var ModelViewController = {
         
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
-            const crfiLockedBalance = this.formatCoinDisplayUnits(crfiData.balances.balance, "crfi")
+            const crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi").toFixed(6)
             const crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
             $("#crfi-wallet").html(crfiData.address);
             console.log(crfiData);
@@ -156,7 +150,7 @@ var ModelViewController = {
         
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
-            const ltnxLockedBalance = this.formatCoinDisplayUnits(ltnxData.balances.balance, "ltnx")
+            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx").toFixed(6)
             const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
             $("#ltnx-wallet").html(ltnxData.address);
             console.log(ltnxData);
@@ -166,7 +160,7 @@ var ModelViewController = {
 
         var gldxData = this.getCoinData("gldx");
         if(gldxData != null){
-            const gldxLockedBalance = this.formatCoinDisplayUnits(gldxData.balances.balance, "gldx")
+            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx").toFixed(6)
             const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
             $("#gldx-wallet").html(gldxData.address);
             console.log(gldxData);
