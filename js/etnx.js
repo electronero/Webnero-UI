@@ -192,6 +192,7 @@ var ModelViewController = {
                 this.fillHistoryRows("CRFI", "Receive", crfiData.txs.in);
                 this.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
             }
+        }
         /*
         var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
