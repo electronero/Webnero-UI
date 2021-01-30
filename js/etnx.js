@@ -113,7 +113,7 @@ var ModelViewController = {
             const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
             $("#etnx-wallet").html(etnxData.address);
             console.log(etnxData);
-            $("#etnx-balance").html(etnxLockedBalance);
+            $("#etnx-balance").html(etnxLockedBalance.toFixed(2));
             $("#etnx-unlocked-balance").html(etnxBalance);
         }
         
@@ -123,7 +123,7 @@ var ModelViewController = {
             const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
             $("#etnxp-wallet").html(etnxpData.address);
             console.log(etnxpData);
-            $("#etnxp-balance").html(etnxpLockedBalance);
+            $("#etnxp-balance").html(etnxpLockedBalance.toFixed(2));
             $("#etnxp-unlocked-balance").html(etnxpBalance);
         }
         
@@ -133,7 +133,7 @@ var ModelViewController = {
             const crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
             $("#crfi-wallet").html(crfiData.address);
             console.log(crfiData);
-            $("#crfi-balance").html(crfiLockedBalance);
+            $("#crfi-balance").html(crfiLockedBalance.toFixed(2));
             $("#crfi-unlocked-balance").html(crfiBalance);
         }
             
@@ -154,7 +154,7 @@ var ModelViewController = {
             const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
             $("#ltnx-wallet").html(ltnxData.address);
             console.log(ltnxData);
-            $("#ltnx-balance").html(ltnxLockedBalance);
+            $("#ltnx-balance").html(ltnxLockedBalance.toFixed(2));
             $("#ltnx-unlocked-balance").html(ltnxBalance);
         }
 
@@ -164,7 +164,7 @@ var ModelViewController = {
             const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
             $("#gldx-wallet").html(gldxData.address);
             console.log(gldxData);
-            $("#gldx-balance").html(gldxLockedBalance);
+            $("#gldx-balance").html(gldxLockedBalance.toFixed(2));
             $("#gldx-unlocked-balance").html(gldxBalance);
         }
     },
