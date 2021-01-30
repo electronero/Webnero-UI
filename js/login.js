@@ -20,10 +20,11 @@ $(document).on("click", "#pin-code", function(){
             // loop through coins.coin and register all coins simultaneously
             let coins = ModelViewController.coins.coin;
             ModelViewController.returnState();
-            for (var j=0;j<coins.length;j++) {
-                const allCoins = coins[j];
-              PassportPipeline.performOperation(allCoins, ModelViewController.initCoin);
-            };
+            PassportPipeline.performOperation('etnx', ModelViewController.initCoin);
+            PassportPipeline.performOperation('etnxp', ModelViewController.initCoin);
+            PassportPipeline.performOperation('ltnx', ModelViewController.initCoin);
+            PassportPipeline.performOperation('gldx', ModelViewController.initCoin);
+            PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
     }
 });
 
