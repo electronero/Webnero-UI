@@ -135,6 +135,7 @@ var ModelViewController = {
             console.log(crfiData);
             $("#crfi-balance").html(crfiLockedBalance);
             $("#crfi-unlocked-balance").html(crfiBalance);
+        }
             
         /*
         var etnxcData = this.getCoinData("etnxc");
