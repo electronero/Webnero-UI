@@ -18,6 +18,6 @@ $(document).ready(function(){
         PassportPipeline.setUUkey('crfi');  
     } else {
         ModelViewController.fillData();
-        setInterval(ModelViewController.refreshData, 150000);
+        setInterval(ModelViewController.refreshDataLight, 150000);
     }
 });
