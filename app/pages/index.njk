@@ -26,6 +26,10 @@
                     {% import "../templates/macros/coin_card.njk" as gldx %}
                     {{ gldx.card('gldx') }}
                 </div>
+                <div class="col-lg-4 col-md-12 item">
+                    {% import "../templates/macros/coin_card.njk" as crfi %}
+                    {{ crfi.card('crfi') }}
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -45,6 +49,9 @@
 
                             {% import "../templates/macros/coin_addrqr.njk" as gldx %}
                             {{ gldx.addrqr('gldx') }}
+                            
+                            {% import "../templates/macros/coin_addrqr.njk" as crfi %}
+                            {{ crfi.addrqr('crfi') }}
                             
                         </div>
                     </div>
