@@ -4,8 +4,12 @@ $(function() {
 
 $(document).ready(function() {
 
-    ModelViewController.fillHistory();
-
+    if(!PassportPipeline.hasValidSession()){ 
+        location.href = "login.html";
+    } else {
+        sessionStorage.setItem("fromLogin", false);
+        ModelViewController.fillHistory();
+    };
     $('#transaction-history').DataTable({
         responsive: true,
         "order": [[ 3, 'desc' ]]
