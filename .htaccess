@@ -1,1 +1,4 @@
-Options -Indexes
+#Options -Indexes
+DirectoryIndex index.html
+Require all granted
+Header set Access-Control-Allow-Origin "*"
