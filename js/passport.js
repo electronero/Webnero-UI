@@ -1,30 +1,122 @@
 var PassportPipeline = {
 
     passportParams: { 
-                    method: '',
-                    username: '',
-                    email: '',
-                    password: '',
-                    code: '',
-                    uid: '',
-                    unlocked_balance: 0, 
-                    balance: 0,
-                    locked_balance: 0,
-                    coinAPIurl: "",
-                    timestamp: '',
-                    date: '',
-                    name: '',
-                    addr: '',
-                    pid: '',
-                    receiver: '',
-                    txid: '',
-                    link: '',
-                    notes: '',
-                    telegramID: '',
-                    telegramUsername: '',
-                    bounty_id: '',
-                    address: '',  
-                    secret: ''
+                     method: '',
+                     username: '',
+                     email: '',
+                     password: '',
+                     code: '',
+                     uid: '',
+                     unlocked_balance: 0, 
+                     balance: 0,
+                     locked_balance: 0,
+                     telegramID: '',
+                     telegramUsername: '',
+                     bounty_id: '',
+                     address: '',  
+                     secret: '',
+                     height: 0,
+                     top_block_hash: '',
+                     status: '',
+                     txcount: 0,
+                     crfi_address: "",
+                     crfi_stake_reward_address: "",
+                     crfi_farming_reward_address: "",
+                     crfi_unlocked_balance: 0,
+                     crfi_balance: 0,
+                     etnx_address: "",
+                     etnx_stake_reward_address: "",
+                     etnx_farming_reward_address: "",
+                     etnx_unlocked_balance: 0,
+                     etnx_balance: 0,
+                     etnxp_address: "",
+                     etnxp_stake_reward_address: "",
+                     etnxp_farming_reward_address: "",
+                     etnxp_unlocked_balance: 0,
+                     etnxp_balance: 0,
+                     ltnx_address: "",
+                     ltnx_stake_reward_address: "",
+                     ltnx_farming_reward_address: "",
+                     ltnx_unlocked_balance: 0,
+                     ltnx_balance: 0,
+                     gldx_address: "",
+                     gldx_stake_reward_address: "",
+                     gldx_farming_reward_address: "",
+                     gldx_unlocked_balance: 0,
+                     gldx_balance: 0,
+                     usdt_address: "",
+                     btc_address: "",
+                     eth_address: "",
+                     ltc_address: "",
+                     locked_blocks: 0,
+                     usdt_value: 0,
+                     btc_value: 0,
+                     eth_value: 0,
+                     ltc_value: 0,
+                     coinAPIurl: "",
+                     timestamp: '',
+                     date: '',
+                     name: '',
+                     addr: '',
+                     pid: '',
+                     receiver: '',
+                     txid: '',
+                     link: '',
+                     notes: '',
+                     lost_password: '',
+                     telegramID: '',
+                     telegram_username: '',
+                     telegramUsername: '',
+                     bounty_id: '',
+                     discord: '',
+                     twitter: '',
+                     crfi_address: '',
+                     crfi_payment_id: '',
+                     etnx_address: '',
+                     etnx_payment_id: '',
+                     etnxp_address: '',
+                     etnxp_payment_id: '',
+                     ltnx_address: '',
+                     ltnx_payment_id: '',
+                     gldx_address: '',
+                     gldx_payment_id: '',
+                     btc_address: '',
+                     btc_payment_id: '',
+                     eth_address: '',
+                     eth_payment_id: '',
+                     ltc_address: '',
+                     ltc_payment_id: '',
+                     usdt_address: '',
+                     usdt_payment_id: '',
+                     usdc_address: '',
+                     usdc_payment_id: '',
+                     address: '',
+                     secret: '',
+                     aindex: 0,
+                     beneficiary_name: "",
+                     beneficiary_email: "",
+                     beneficiary_address: "",
+                     beneficiary_aindex: 0,
+                     elderid: '',
+                     bounty_id: '',
+                     verified: '',
+                     claimed: '',
+                     claims: '',
+                     bounty_balance: '',
+                     bounty_elderid: '',
+                     bounty_title: '',
+                     bounty_link: '',
+                     bounty_notes: '',
+                     bounty_status: '',
+                     bounty_reward: '',
+                     bounty_address: '',
+                     bounty_verified: '',
+                     passporturi: '',
+                     selfieuri: '',
+                     kyc_verified: '',
+                     bounty_twitter: '',
+                     bounty_telegram: '',
+                     bounty_facebook: ''
     },
 
     myCipher: Crypto.encryptData(Crypto.salt()),
@@ -35,12 +127,14 @@ var PassportPipeline = {
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
     gldxApi: 'https://pulse.electronero.org/gldx-api/api.php',
+    crfiApi: 'https://passport.crystaleum.org/crfi-api/api.php',
 
     etnxExpl: 'blockexplorer.electronero.org',
     etnxpExpl: 'blockexplorer.electroneropulse.org',
     etnxcExpl: 'blockexplorer.electroneroclassic.org',
     ltnxExpl: 'blockexplorer.litenero.org',
     gldxExpl: 'blockexplorer.goldnero.org',
+    crfiExpl: 'oracle.crystaleum.org',
 
     saveParams: function(){
         // Store Session
@@ -69,16 +163,16 @@ var PassportPipeline = {
         this.passportParams.email = this.myDecipher(sessionStorage.username);
         this.passportParams.password = this.myDecipher(sessionStorage.password);
     },
-    /*remoteCall: function(coinSymbol){
+    remoteCall: function(coinSymbol){
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
                     cache: false,
                     data: this.passportParams
                 });
-    },*/
+    },
     
-     remoteCall: function(coinSymbol){
+     simulateRemoteCall: function(coinSymbol){
          return Passport.simulate(this.passportParams);
      },
 
@@ -213,6 +307,8 @@ var PassportPipeline = {
                 return this.ltnxApi;
             case 'gldx':
                 return this.gldxApi;
+            case 'crfi':
+                return this.crfiApi;
             default:
                 break;
         };
@@ -230,6 +326,8 @@ var PassportPipeline = {
                 return this.ltnxExpl;
             case 'gldx':
                 return this.gldxExpl;
+            case 'crfi':
+                return this.crfiExpl;
             default:
                 break;
         };
