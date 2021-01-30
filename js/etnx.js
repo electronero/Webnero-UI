@@ -297,6 +297,14 @@ var ModelViewController = {
         PassportPipeline.performOperation("gldx", ModelViewController.initCoin);
         PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
     },
+        refreshDataLight: function(){
+        PassportPipeline.loadCode();
+        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
+        PassportPipeline.performOperation("ltnx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("gldx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
+    }
 };
 
 $(document).on("init.done", function(e){
