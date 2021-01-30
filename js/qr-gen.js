@@ -51,7 +51,6 @@
         });
     })();
 }
-
 	// gldx
 	var gldxData = ModelViewController.getCoinData("gldx");
 	if (gldxData != null) {
@@ -65,5 +64,19 @@
         });
     })();
 }
+        // crfi
+        var crfiData = ModelViewController.getCoinData("crfi");
+        if (crfiData != null) {
+    (function() {
+        var $value_crfi = crfiData.address;
+
+        var qr2 = window.qr2 = new QRious({
+            element: document.getElementById('qrious-crfi'),
+            size: 250,
+            value: $value_crfi
+        });
+    })();
+}
+	
 	//
 })();
