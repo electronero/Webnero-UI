@@ -129,8 +129,8 @@ var ModelViewController = {
         
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
-            const crfiLockedBalance = this.formatCoinUnits(etnxcData.balances.balance, "crfi")
-            const crfiBalance = this.formatCoinUnits(etnxcData.balances.unlocked_balance, "crfi")
+            const crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
+            const crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
             $("#crfi-wallet").html(crfiData.address);
             console.log(crfiData);
             $("#crfi-balance").html(crfiLockedBalance);
