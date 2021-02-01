@@ -150,6 +150,309 @@ var PassportPipeline = {
         console.log(this.passportParams.username)   
         console.log(this.passportParams.password)
     },
+        setWalletAindex: function(coinSymbol, aindex){ 
+        console.log("setWalletAindex");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        sessionStorage.setItem("aindex", parseFloat(aindex));
+        sessionStorage.setItem("beneficiary_aindex", parseFloat(aindex));
+        this.passportParams.aindex = parseFloat(sessionStorage.getItem("aindex"));
+        this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
+        console.log("setWalletAindex to: " + parseFloat(this.passportParams.aindex));
+        console.log("setWalletAindex beneficiary to: " + parseFloat(this.passportParams.beneficiary_aindex));
+    },
+    
+    getWalletAindex: function(coinSymbol){
+        console.log("getWalletAindex");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    this.loadParams();
+    this.passportParams.method = 'get_wallet_aindex';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("getWalletAindex init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportGetAindex = JSON.parse(response);
+                    if(passportGetAindex.hasOwnProperty("error")){
+                        let aindexError = passportGetAindex.error;
+                        $(".alert-danger").html(aindexError);
+                        console.log(passportGetAindex);
+                        return;
+                    }   
+                        const aindex = parseFloat(passportGetAindex.data);
+                        this.passportParams.aindex = aindex;
+                        this.setWalletAindex("crfi", aindex);
+                        console.log(passportGetAindex);
+                        console.log(passportGetAindex.data);
+                        return;
+                }
+            });
+    },
+    fillBeneficiary: function(coinSymbol, list){
+        console.log("fillBeneficiary");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        }
+        console.log(list);
+        var name = list.name;
+        var email = list.email;
+        var address = list.address;
+        console.log("name: "+name)
+        console.log("email: "+email)
+        console.log("address: "+address)
+    document.getElementById("name_span").innerHTML = name;
+        document.getElementById("email_span").innerHTML = email;
+        document.getElementById("address_span").innerHTML = address;
+    },
+    getBeneficiary: function(coinSymbol){
+        console.log("getBeneficiary");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    this.loadParams();
+    this.passportParams.method = 'get_beneficiary';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
+    this.passportParams.beneficiary_aindex = parseFloat(this.passportParams.beneficiary_aindex);
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("getBeneficiary init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportGetBeneficiary = JSON.parse(response);
+                    if(passportGetBeneficiary.hasOwnProperty("error")){
+                        let aindexError = passportGetBeneficiary.error;
+                        $(".alert-danger").html(aindexError);
+                        console.log(passportGetBeneficiary);
+                        return;
+                    }   
+                        const list = passportGetBeneficiary.data;
+                        //this.passportParams.list = list;
+                        this.fillBeneficiary("crfi", list);
+                        console.log(passportGetBeneficiary);
+                        console.log(passportGetBeneficiary.data);
+                        return;
+                }
+            });
+    },
+    setBountyId: function(coinSymbol, bounty_id){ 
+        console.log("setBountyId");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    var crfiData = ModelViewController.getCoinData("crfi"); 
+    let bounty_address = crfiData.address;
+    document.getElementById("elder_address_span").innerHTML = bounty_address;
+        sessionStorage.setItem("bounty_id", bounty_id)
+    sessionStorage.setItem("bounty_address", bounty_address);
+        this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
+        this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
+        console.log("setBountyId to: " + this.passportParams.bounty_id);
+        console.log("bounty_address to: " + this.passportParams.bounty_address);
+    },
+    storeElderHash: function(coinSymbol, elder_hash){ 
+        console.log("storeElderHash");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    document.getElementById("elder_bounty_id").innerHTML = elder_hash;
+        sessionStorage.setItem("elder_hash", elder_hash)
+        this.passportParams.bounty_elderid = sessionStorage.getItem("elder_hash");
+        this.passportParams.elderid = sessionStorage.getItem("elder_hash");
+        console.log("bounty_elderid set to: " + this.passportParams.bounty_elderid);
+    },
+    hasBountyId: function(coinSymbol){
+        console.log("hasBountyId");
+    if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        return sessionStorage.getItem("bounty_id");
+    },
+    hasElderBountyId: function(coinSymbol){
+        console.log("hasBountyId");
+    if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        return sessionStorage.getItem("bounty_elderid");
+    },
+    getBountyID: function(coinSymbol){
+        console.log("getBountyID");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    this.loadParams();
+    this.passportParams.method = 'get_bounty_id';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("getBountyID init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportGetBountyID = JSON.parse(response);
+                    if(passportGetBountyID.hasOwnProperty("error")){
+                        let bountyIdErr = passportGetBountyID.error;
+                        $(".alert-danger").html(bountyIdErr);
+                        console.log(passportGetBountyID);
+                        return;
+                    }   
+                        const bounty_id = passportGetBountyID.data.bountyid;
+                        this.passportParams.bounty_id = bounty_id;
+                        PassportPipeline.setBountyId("crfi", bounty_id);
+                        console.log(passportGetBountyID);
+                        console.log(passportGetBountyID.data);
+                        return;
+                }
+            });
+    },
+    fillFoundlings: function(coinSymbol, foundlings){
+        console.log("fillFoundlings");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        }
+        console.log(foundlings);
+        
+    var session_bounty_elderid = sessionStorage.getItem("bounty_elderid");  
+    var session_bounty_id = sessionStorage.getItem("bounty_id");    
+
+    var i;
+    for(i = 0; i < foundlings.length; i++){
+    var address = foundlings[i].address;
+    console.log(foundlings[i]);
+    var tbody = $("#bounty-history").find('tbody');
+    var bounty_id = foundlings[i].bounty_id;
+    var bounty_elderid = foundlings[i].bounty_elderid;
+        if(address == null || address == "null" || address == '' || address == undefined){
+            address = 'Private';
+           }
+      var tr;
+      tr = $('<tr/>');
+      tr.append("<td>" + bounty_id + "</td>");
+      tr.append("<td>" + address + "</td>");
+      $(tbody).append(tr);
+    }
+        console.log("address: "+address)
+        console.log("session_bounty_elderid: "+session_bounty_elderid)
+        console.log("session_bounty_id: "+session_bounty_id)
+    },
+    
+    monitorFoundlings: function(coinSymbol, bounty_id, data){
+        console.log("monitorFoundlings");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    this.loadParams();
+    this.passportParams.method = 'monitor_foundlings';
+    console.log("bounty_id at monitor_foundlings: "+bounty_id);
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.passportParams.bounty_id = bounty_id;
+    this.passportParams.bounty_elderid = bounty_id;
+    console.log(this.passportParams.bounty_elderid)
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("monitorFoundlings init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportMonitorFoundlings = JSON.parse(response);
+                    if(passportMonitorFoundlings.hasOwnProperty("error")){
+                        let foundlingError = passportMonitorFoundlings.error;
+                        $(".alert-danger").html(foundlingError);
+                        console.log(passportMonitorFoundlings);
+                        return;
+                    }   
+                        let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
+                        var foundlings = passportMonitorFoundlings.data.foundlings;
+                        PassportPipeline.fillFoundlings("crfi", foundlings);
+                        console.log(passportMonitorFoundlings);
+                        console.log(passportMonitorFoundlings.data);
+                        return;
+                }
+            });
+    },
+    
+    setElderHash: function(coinSymbol, elder_hash){
+        console.log("setElderHash");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    this.loadParams();
+    this.passportParams.method = 'charge_elder_hash';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.passportParams.bounty_elderid = elder_hash;
+    var crfiData = ModelViewController.getCoinData("crfi"); 
+    let bounty_address = crfiData.address;
+    this.passportParams.address = bounty_address;
+    this.passportParams.bounty_address = bounty_address;
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("setElderHash init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportAddElder = response;
+                    if(passportAddElder.hasOwnProperty("error")){
+                        let beneError = passportAddElder.error;
+                        $(".alert-danger").html(beneError);
+                        console.log(passportAddElder);
+                        return;
+                    }   
+                        //this.saveParams();
+            PassportPipeline.storeElderHash("crfi", elder_hash);
+                        console.log(passportAddElder);
+                        return;
+                }
+            });
+    },
+    setBeneficiary: function(coinSymbol, bene_name, bene_email, bene_address){
+        console.log("setBeneficiary");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        if(!bene_name || !bene_email || !bene_address){
+            return;
+        } 
+    this.loadParams();
+    this.passportParams.method = 'add_beneficiary';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
+    this.passportParams.beneficiary_aindex = parseFloat(this.passportParams.beneficiary_aindex);
+    this.passportParams.beneficiary_name = bene_name;
+    this.passportParams.beneficiary_email = bene_email;
+    this.passportParams.beneficiary_address = bene_address;
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("setBeneficiary init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportAddBene = JSON.parse(response);
+                    if(passportAddBene.hasOwnProperty("error")){
+                        let beneError = passportAddBene.error;
+                        $(".alert-danger").html(beneError);
+                        console.log(passportAddBene);
+                        return;
+                    }   
+                        //const aindex = passportAddBene.data;
+                        //this.passportParams.aindex = aindex;
+                        this.saveParams();
+                        console.log(passportAddBene);
+                        return;
+                }
+            });
+    },
+    
+    saveHash: function(key_set){   
+        console.log("saveHash");
+        if(key_set != undefined || key_set != null){
+            sessionStorage.setItem("key_hash", key_set);
+            this.passportParams.lost_password = sessionStorage.getItem("key_hash");
+           }
+        else {
+            sessionStorage.setItem("key_hash", this.passportParams.lost_password);
+            this.passportParams.lost_password = sessionStorage.getItem("key_hash");
+        }
+        console.log(this.passportParams.lost_password);    
+        return(sessionStorage.getItem("key_hash"));
+    },
+    logUU: function(){
+        console.log("logUU");
+        console.log(this.passportParams);
+    },
     hasValidSession: function(){
         return sessionStorage.hasOwnProperty("username")
                 && sessionStorage.hasOwnProperty("password")
