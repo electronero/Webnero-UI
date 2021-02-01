@@ -193,15 +193,7 @@ var ModelViewController = {
                 this.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
             }
         }
-        /*
-        var etnxcData = this.getCoinData("etnxc");
-        if(etnxcData != null){
-            if(etnxcData.txs.in || etnxcData.txs.out){
-                this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
-                this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
-            }
-        }*/
-        
+       
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
             if(ltnxData.txs.in || ltnxData.txs.out){
@@ -263,13 +255,12 @@ var ModelViewController = {
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);
+                    $.event.trigger({
+                    type: "init.done",
+                    coin: coinSymbol
+                });
                 }
             }
-
-            $.event.trigger({
-                type: "init.done",
-                coin: coinSymbol
-            });
         });
     },
     initVerification: function(coinSymbol){
