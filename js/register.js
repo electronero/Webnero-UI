@@ -1,3 +1,7 @@
+window.onload = function() {
+  ModelViewController.isLogin = false;
+  PassportPipeline.statusMessage("Folio Updated!");
+}
 $(document).on("click", "#register", function(){
     $(".alert").css("display", "none");
     if(validateField()){
