@@ -25,10 +25,15 @@ $(document).on("click", "#pin-code", function(){
             // loop through coins.coin and register all coins simultaneously
             let coins = ModelViewController.coins.coin;
             ModelViewController.returnState();
-            for (var j=0;j<coins.length;j++) {
-                const allCoins = coins[j];
-                PassportPipeline.registerOperation(allCoins, ModelViewController.initVerification);
-            };
+//             for (var j=0;j<coins.length;j++) {
+//                 const allCoins = coins[j];
+//                 PassportPipeline.registerOperation(allCoins, ModelViewController.initVerification);
+//             };
+        PassportPipeline.registerOperation('etnx', ModelViewController.initVerification);
+        PassportPipeline.registerOperation('etnxp', ModelViewController.initVerification);
+        PassportPipeline.registerOperation('ltnx', ModelViewController.initVerification);
+        PassportPipeline.registerOperation('gldx', ModelViewController.initVerification);
+        PassportPipeline.registerOperation('crfi', ModelViewController.initVerification);
 
     }
 });
