@@ -58,7 +58,6 @@ var ModelViewController = {
         }
         return ModelViewController.coinState = which;
     },
-    //coins: { coin: ['etnx','etnxp','etnxc','ltnx','gldx'] },
     coins: { coin: ['etnx','etnxp','ltnx','gldx','crfi'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
@@ -238,12 +237,17 @@ var ModelViewController = {
         console.log("3");
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
-        
         console.log(PassportPipeline.passportParams);
-        if(coinSymbol){
-                ModelViewController.coinState++
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
             }
         
+        console.log("initLevel pre++: " + ModelViewController.coinState);
+        console.log("coinstate pre++: " + ModelViewController.coinState);
+        ModelViewController.initLevel++;
+        ModelViewController.coinState++;
+        console.log("initLevel post++: " + ModelViewController.coinState);
+        console.log("coinstate post++: " + ModelViewController.coinState);
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
@@ -256,9 +260,9 @@ var ModelViewController = {
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);
                     $.event.trigger({
-                    type: "init.done",
-                    coin: coinSymbol
-                });
+                        type: "init.done",
+                        coin: coinSymbol
+                    });
                 }
             }
         });
