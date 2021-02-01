@@ -139,14 +139,11 @@ var PassportPipeline = {
     saveParams: function(){
         // Store Session
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
-        sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
-        
-              
+        sessionStorage.setItem("password", this.myCipher(this.passportParams.password)); 
         // Then cipher any sensitive data
         this.passportParams.username = sessionStorage.getItem("username");
         this.passportParams.email = sessionStorage.getItem("username");
         this.passportParams.password = sessionStorage.getItem("password");
-        
         console.log(this.passportParams.username)   
         console.log(this.passportParams.password)
     },
@@ -161,8 +158,7 @@ var PassportPipeline = {
         this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
         console.log("setWalletAindex to: " + parseFloat(this.passportParams.aindex));
         console.log("setWalletAindex beneficiary to: " + parseFloat(this.passportParams.beneficiary_aindex));
-    },
-    
+    },    
     getWalletAindex: function(coinSymbol){
         console.log("getWalletAindex");
         if(!coinSymbol){
@@ -566,7 +562,11 @@ var PassportPipeline = {
         return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
     },
     performOperation: function(coinSymbol, operationCallback){
-        this.loadParams();       
+        console.log("performOperation");
+        coinSymbol = 'crfi';
+        this.loadParams();    
+        
+        
         this.passportParams.method = 'login';
         this.setMethod('login');
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
@@ -576,11 +576,13 @@ var PassportPipeline = {
         this.remoteCall(coinSymbol).then((response) => {
             console.log(this.passportParams);
             if(response){
+                console.log(response);
                 let passportLogin = JSON.parse(response);
                 if(passportLogin.hasOwnProperty("error")){
                     loginFail();
                     return;
                 }
+
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 this.passportParams.code = parseInt(this.loadCode());
@@ -588,11 +590,13 @@ var PassportPipeline = {
                 this.setMethod('check_code');
                 console.log("2");
                 console.log(this.passportParams);
-                this.remoteCall(coinSymbol).then((response) => {
+                this.remoteCall(coinSymbol, this.passportParams).then((response) => {
                     if(response){
                         console.log(response); 
                         let passportCheckCode = JSON.parse(response);
                         if(passportCheckCode.hasOwnProperty("error")){
+                            let checkError = passportCheckCode.hasOwnProperty("error");
+                            console.log(checkError);
                             loginCodeFail();
                             return;
                         }
