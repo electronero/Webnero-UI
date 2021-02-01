@@ -150,13 +150,11 @@ var PassportPipeline = {
         console.log(this.passportParams.username)   
         console.log(this.passportParams.password)
     },
-
     hasValidSession: function(){
         return sessionStorage.hasOwnProperty("username")
                 && sessionStorage.hasOwnProperty("password")
                 && sessionStorage.hasOwnProperty("code")
     },
-
     loadParams: function(){
         // Read only persistent data needed
         this.passportParams.username = this.myDecipher(sessionStorage.username);
@@ -170,12 +168,73 @@ var PassportPipeline = {
                     cache: false,
                     data: this.passportParams
                 });
+    },   
+    setUUkey: function(coinSymbol){
+        console.log("setUUkey");
+        if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
+    };
+    this.loadParams();
+    this.passportParams.method = 'set_uu_key';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("set_uu_key init");
+                if(response){
+                    console.log(response)
+                    let passportSetUU = JSON.parse(response);
+                    if(passportSetUU.hasOwnProperty("error")){
+                        let resetError = passportSetUU.error;
+                        $(".alert-danger").html(resetError);
+                        console.log(passportSetUU);
+                        //resetFail();
+                        return;
+                    }   
+                        this.passportParams.lost_password = passportSetUU.data;
+                        this.saveHash();
+                        console.log("SET UU");
+                        console.log(passportSetUU);
+                        console.log("GET UU .DATA");
+                        console.log(passportSetUU.data);
+                        console.log(this.passportParams);
+                        //resetSuccess();
+                        return;
+                }
+            });
     },
-    
-     simulateRemoteCall: function(coinSymbol){
+    getUUkey: function(coinSymbol){
+        console.log("getUUkey");
+        if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
+    };
+    this.loadParams();
+    this.passportParams.method = 'get_uu_key';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("get_uu_key init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportGetUU = JSON.parse(response);
+                    if(passportGetUU.hasOwnProperty("error")){
+                        let resetError = passportGetUU.error;
+                        $(".alert-danger").html(resetError);
+                        console.log(passportGetUU);
+                        //resetFail();
+                        return;
+                    }                           
+                        this.passportParams.lost_password = passportGetUU.data;
+                        this.saveHash();
+                        console.log("GET UU");
+                        console.log(passportGetUU);
+                        console.log("GET UU .DATA");
+                        console.log(passportGetUU.data);
+                        //resetSuccess();
+                        return;
+                }
+            });
+    },
+    simulateRemoteCall: function(coinSymbol){
          return Passport.simulate(this.passportParams);
      },
-
     setCredentials: function(email, password, save){
         // maybe cipher the data, but it's done elsewhere
         this.passportParams.username = this.myDecipher(email);
@@ -186,17 +245,14 @@ var PassportPipeline = {
             return this.saveParams();
         }
     },
-
     setMethod: function(method){
         return this.passportParams.method = method;
     },
-
     setCode: function(code){
         // We needed it for refresh data
         this.passportParams.code = code; 
         return sessionStorage.setItem("code", code);
     },
-
     loadCode: function(){
         return this.passportParams.code = this.myDecipher(sessionStorage.code);
     },
@@ -207,9 +263,7 @@ var PassportPipeline = {
         return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
     },
     performOperation: function(coinSymbol, operationCallback){
-        this.loadParams();    
-        
-        
+        this.loadParams();       
         this.passportParams.method = 'login';
         this.setMethod('login');
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
@@ -224,7 +278,6 @@ var PassportPipeline = {
                     loginFail();
                     return;
                 }
-
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 this.passportParams.code = parseInt(this.loadCode());
@@ -253,8 +306,7 @@ var PassportPipeline = {
         });
     },
     registerOperation: function(coinSymbol, operationCallback){
-        this.loadParams();
-        
+        this.loadParams();        
         this.passportParams.method = 'register';
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
         this.passportParams.uid = null;
@@ -267,7 +319,6 @@ var PassportPipeline = {
                     loginFail();
                     return;
                 }
-
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 this.passportParams.code = parseInt(this.loadCode());
@@ -294,7 +345,6 @@ var PassportPipeline = {
             }
         });
     },
-
     getPassportApi: function(coinSymbol){
         switch(coinSymbol){
             case 'etnx':
@@ -313,7 +363,6 @@ var PassportPipeline = {
                 break;
         };
     },
-
     getBlockchainLink: function(coinSymbol){
         switch(coinSymbol){
             case 'etnx':
