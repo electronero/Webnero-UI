@@ -237,18 +237,14 @@ var ModelViewController = {
         console.log("3");
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
-        console.log(PassportPipeline.passportParams);
-        if(!coinSymbol){
-            coinSymbol = 'crfi';
-            }
-        
+        console.log(PassportPipeline.passportParams);      
         console.log("initLevel pre++: " + ModelViewController.coinState);
         console.log("coinstate pre++: " + ModelViewController.coinState);
         ModelViewController.initLevel++;
         ModelViewController.coinState++;
         console.log("initLevel post++: " + ModelViewController.coinState);
         console.log("coinstate post++: " + ModelViewController.coinState);
-        PassportPipeline.remoteCall(coinSymbol).then((response) => {
+        PassportPipeline.remoteCall(coinSymbol,PassportPipeline.passportParams).then((response) => {
             if(response){
                 console.log(response); 
                 let passportBalance = JSON.parse(response);
