@@ -280,19 +280,19 @@ var ModelViewController = {
     refreshData: function(){
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
-        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
-        PassportPipeline.performOperation("ltnx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("gldx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
+         // loop through coins.coin and get all coinData
+            let coins = ModelViewController.coins.coin;
+            for (var i=0;i<coins.length;i++) {
+                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin)
+        };
     },
         refreshDataLight: function(){
         PassportPipeline.loadCode();
-        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
-        PassportPipeline.performOperation("ltnx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("gldx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
+         // loop through coins.coin and get all coinData
+            let coins = ModelViewController.coins.coin;
+            for (var i=0;i<coins.length;i++) {
+                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin);
+        };
     }
 };
 
