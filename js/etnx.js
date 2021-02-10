@@ -228,8 +228,7 @@ var ModelViewController = {
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
         console.log(PassportPipeline.passportParams);   
-        console.log(passportParams);  
-        passportParams.uid = PassportPipeline.passportParams.uid);
+        console.log(passportParams);
         console.log("coinstate pre++: " + ModelViewController.coinState);
         ModelViewController.coinState++;
         console.log("coinstate post++: " + ModelViewController.coinState);
