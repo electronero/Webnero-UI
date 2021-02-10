@@ -274,27 +274,17 @@ var ModelViewController = {
     refreshData: function(){
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
-                PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('etnx', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('etnxp', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('ltnx', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('gldx', ModelViewController.initCoin);
+        let coins = ModelViewController.coins.coin; 
+        for (var i=0;i<coins.length;i++) {
+                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin)   
+        };
     },
         refreshDataLight: function(){
         PassportPipeline.loadCode();
-                PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('etnx', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('etnxp', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('ltnx', ModelViewController.initCoin);
-            
-                PassportPipeline.performOperation('gldx', ModelViewController.initCoin);
+        let coins = ModelViewController.coins.coin; 
+        for (var i=0;i<coins.length;i++) {
+                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin)   
+        };
     }
 };
 
