@@ -228,7 +228,8 @@ var ModelViewController = {
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
         console.log(PassportPipeline.passportParams);   
-        console.log(passportParams);   
+        console.log(passportParams);  
+        passportParams.uid = PassportPipeline.passportParams.uid);
         console.log("coinstate pre++: " + ModelViewController.coinState);
         ModelViewController.coinState++;
         console.log("coinstate post++: " + ModelViewController.coinState);
@@ -239,7 +240,7 @@ var ModelViewController = {
                 let passportBalance = JSON.parse(response);
                 console.log(passportBalance);
                 if(passportBalance.hasOwnProperty("error")){
-                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    //PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
                     return;
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
@@ -274,19 +275,27 @@ var ModelViewController = {
     refreshData: function(){
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
-         // loop through coins.coin and get all coinData
-            let coins = ModelViewController.coins.coin;
-            for (var i=0;i<coins.length;i++) {
-                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin)
-        };
+                PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('etnx', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('etnxp', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('ltnx', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('gldx', ModelViewController.initCoin);
     },
         refreshDataLight: function(){
         PassportPipeline.loadCode();
-         // loop through coins.coin and get all coinData
-            let coins = ModelViewController.coins.coin;
-            for (var i=0;i<coins.length;i++) {
-                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin);
-        };
+                PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('etnx', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('etnxp', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('ltnx', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('gldx', ModelViewController.initCoin);
     }
 };
 
