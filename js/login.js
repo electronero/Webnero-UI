@@ -18,13 +18,15 @@ $(document).on("click", "#pin-code", function(){
         PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
         ModelViewController.returnState();
-            let coins = ModelViewController.coins.coin;
-            ModelViewController.returnState();
-            for (var j=0;j<coins.length;j++) {
-                const allCoins = coins[j];
-                console.log(allCoins)
-                PassportPipeline.performOperation(allCoins, ModelViewController.initCoin);
-            };
+                PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('etnx', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('etnxp', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('ltnx', ModelViewController.initCoin);
+            
+                PassportPipeline.performOperation('gldx', ModelViewController.initCoin);
     }
 });
 
