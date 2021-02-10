@@ -18,14 +18,11 @@ $(document).on("click", "#pin-code", function(){
         PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
         ModelViewController.returnState();
-            var coins = {
-                crfi: 'crfi',
-                etnx: 'etnx',
-                etnxp: 'etnxp',
-                ltnx: 'ltnx',
-                gldx: 'gldx'
-            }
-            PassportPipeline.performOperation(coins, ModelViewController.initCoin);
+        PassportPipeline.performOperation('etnx', ModelViewController.initCoin);
+        PassportPipeline.performOperation('etnxp', ModelViewController.initCoin);
+        PassportPipeline.performOperation('ltnx', ModelViewController.initCoin);
+        PassportPipeline.performOperation('gldx', ModelViewController.initCoin);
+        PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
     }
 });
 
