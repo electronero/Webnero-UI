@@ -603,7 +603,7 @@ var PassportPipeline = {
                            }
                         console.log("3");
                         console.log(this.passportParams);
-                        operationCallback(coinSymbol);
+                        operationCallback(coinSymbol, this.passportParams);
                     }
                 });
             }
