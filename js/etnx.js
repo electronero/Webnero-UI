@@ -303,7 +303,7 @@ $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     console.log("check engine")
     console.log(ModelViewController.initLevel)
-    if(ModelViewController.initLevel >= 4){
+    if(ModelViewController.initLevel >= 10){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
