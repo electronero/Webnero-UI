@@ -239,7 +239,7 @@ var ModelViewController = {
                 let passportBalance = JSON.parse(response);
                 console.log(passportBalance);
                 if(passportBalance.hasOwnProperty("error")){
-                    //PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
                     return;
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
