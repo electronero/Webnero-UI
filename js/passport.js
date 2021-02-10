@@ -570,7 +570,7 @@ var PassportPipeline = {
         this.passportParams.uid = null;
         console.log("1");
         console.log(this.passportParams);
-        this.remoteCall(coinSymbol).then((response) => {
+        this.remoteCall(coinSymbol,this.passportParams).then((response) => {
             console.log(this.passportParams);
             if(response){
                 console.log(response);
@@ -616,7 +616,7 @@ var PassportPipeline = {
         this.passportParams.uid = null;
         console.log("1");
         console.log(this.passportParams);
-        this.remoteCall(coinSymbol).then((response) => {
+        this.remoteCall(coinSymbol,this.passportParams).then((response) => {
             if(response){
                 let passportLogin = JSON.parse(response);
                 if(passportLogin.hasOwnProperty("error")){
@@ -629,7 +629,7 @@ var PassportPipeline = {
                 this.passportParams.method = 'add_code';
                 console.log("2");
                 console.log(this.passportParams);
-                this.remoteCall(coinSymbol).then((response) => {
+                this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                     if(response){
                         console.log(response); 
                         let passportCheckCode = JSON.parse(response);
