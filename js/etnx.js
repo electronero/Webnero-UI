@@ -60,6 +60,7 @@ var ModelViewController = {
     },
     coins: { coin: ['etnx','etnxp','ltnx','gldx','crfi'] },
     setCoinData: function(coin, data){
+        
         return localStorage.setItem(coin+"Data", data);       
     },
     getCoinData: function(coin){
@@ -135,18 +136,7 @@ var ModelViewController = {
             $("#crfi-balance").html(crfiLockedBalance);
             $("#crfi-unlocked-balance").html(crfiBalance);
         }
-            
-        /*
-        var etnxcData = this.getCoinData("etnxc");
-        if(etnxcData != null){
-            const etnxcLockedBalance = this.formatCoinUnits(etnxcData.balances.balance, "etnxc")
-            const etnxcBalance = this.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
-            $("#etnxc-wallet").html(etnxcData.address);
-            console.log(etnxcData);
-            $("#etnxc-balance").html(etnxcLockedBalance);
-            $("#etnxc-unlocked-balance").html(etnxcBalance);
-        }*/
-        
+                
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
             const ltnxLockedBalance = parseFloat(this.formatCoinUnits(ltnxData.balances.balance, "ltnx")).toFixed(2)
@@ -240,9 +230,7 @@ var ModelViewController = {
         console.log(PassportPipeline.passportParams);      
         console.log("coinstate pre++: " + ModelViewController.coinState);
         ModelViewController.coinState++;
-        ModelViewController.initLevel++;
         console.log("coinstate post++: " + ModelViewController.coinState);
-        console.log("initLevel post++: " + ModelViewController.initLevel);
         
         PassportPipeline.remoteCall(coinSymbol,PassportPipeline.passportParams).then((response) => {
             if(response){
@@ -255,6 +243,8 @@ var ModelViewController = {
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);
+                    ModelViewController.initLevel++;
+                    console.log("initLevel post++: " + ModelViewController.initLevel);
                     $.event.trigger({
                         type: "init.done",
                         coin: coinSymbol
@@ -268,7 +258,7 @@ var ModelViewController = {
                 ModelViewController.coinState++
             }
             
-            ModelViewController.initLevel++;
+            //ModelViewController.initLevel++;
             if(!PassportPipeline.hasValidSession())
             {
                 location.href = "verify.html";
