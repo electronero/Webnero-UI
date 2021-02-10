@@ -241,6 +241,7 @@ var ModelViewController = {
         console.log("coinstate pre++: " + ModelViewController.coinState);
         ModelViewController.coinState++;
         console.log("coinstate post++: " + ModelViewController.coinState);
+        
         PassportPipeline.remoteCall(coinSymbol,PassportPipeline.passportParams).then((response) => {
             if(response){
                 console.log(response); 
@@ -298,7 +299,9 @@ var ModelViewController = {
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
-    if(ModelViewController.initLevel >= 4){
+    console.log("check engine")
+    console.log(ModelViewController.initLevel)
+    if(ModelViewController.initLevel >= 1){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
