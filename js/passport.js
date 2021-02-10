@@ -582,6 +582,8 @@ var PassportPipeline = {
 
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+                console.log("UUID log")
+                console.log(this.passportParams.uid)
                 this.passportParams.code = parseInt(this.loadCode());
                 this.passportParams.method = 'check_code';
                 this.setMethod('check_code');
