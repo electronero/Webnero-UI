@@ -147,7 +147,7 @@ var PassportPipeline = {
         console.log(this.passportParams.username)   
         console.log(this.passportParams.password)
     },
-        setWalletAindex: function(coinSymbol, aindex){ 
+    setWalletAindex: function(coinSymbol, aindex){ 
         console.log("setWalletAindex");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
@@ -605,7 +605,7 @@ var PassportPipeline = {
                            }
                         console.log("3");
                         console.log(this.passportParams);
-                        operationCallback(coinSymbol, this.passportParams);
+                        operationCallback(coinSymbol);
                     }
                 });
             }
