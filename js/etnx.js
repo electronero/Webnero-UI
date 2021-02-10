@@ -240,7 +240,9 @@ var ModelViewController = {
         console.log(PassportPipeline.passportParams);      
         console.log("coinstate pre++: " + ModelViewController.coinState);
         ModelViewController.coinState++;
+        ModelViewController.initLevel++;
         console.log("coinstate post++: " + ModelViewController.coinState);
+        console.log("initLevel post++: " + ModelViewController.initLevel);
         
         PassportPipeline.remoteCall(coinSymbol,PassportPipeline.passportParams).then((response) => {
             if(response){
@@ -265,7 +267,8 @@ var ModelViewController = {
             if(coinSymbol){
                 ModelViewController.coinState++
             }
-
+            
+            ModelViewController.initLevel++;
             if(!PassportPipeline.hasValidSession())
             {
                 location.href = "verify.html";
@@ -298,10 +301,9 @@ var ModelViewController = {
 
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
-    ModelViewController.initLevel++;
     console.log("check engine")
     console.log(ModelViewController.initLevel)
-    if(ModelViewController.initLevel >= 5){
+    if(ModelViewController.initLevel >= 4){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
