@@ -17,10 +17,15 @@ $(document).on("click", "#pin-code", function(){
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
         PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
-            // loop through coins.coin and register all coins simultaneously
-            let coins = ModelViewController.coins.coin;
-            ModelViewController.returnState();
-            PassportPipeline.performOperation('etnx','etnxp','ltnx','gldx','crfi', ModelViewController.initCoin);
+        ModelViewController.returnState();
+            var coins = {
+                crfi: 'crfi',
+                etnx: 'etnx',
+                etnxp: 'etnxp',
+                ltnx: 'ltnx',
+                gldx: 'gldx'
+            }
+            PassportPipeline.performOperation(coins, ModelViewController.initCoin);
     }
 });
 
