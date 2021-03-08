@@ -62,19 +62,22 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	} else {
 		sendAll = true;
 	}
-	if(coin_checked.coin === 'etnx'){
+	if(coin_checked.coin === 'etnx' || etnx_checked === true){
 		console.log("ETNX");
 	}
-	else if(coin_checked.coin === 'etnxp'){
+	else if(coin_checked.coin === 'etnxp' || etnxp_checked === true){
 		console.log("ETNX");
 	}
-	else if(coin_checked.coin === 'ltnx'){
+	else if(coin_checked.coin === 'ltnx' || ltnx_checked === true){
 		console.log("ETNX");
 	}
-	else if(coin_checked.coin === 'gldx'){
+	else if(coin_checked.coin === 'gldx' || gldx_checked === true){
 		console.log("ETNX");
-	} else {
+	} 
+	else if(coin_checked.coin === 'crfi' || crfi_checked === true){
 		console.log("CRFI");
+	} else {
+		console.log("ERROR");
 	}
 	var coin_selected = $(".btn-selected").attr("id");
 	var coinsymbol = '';
