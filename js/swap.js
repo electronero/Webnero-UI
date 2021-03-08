@@ -39,7 +39,7 @@ document.getElementById('swap-all').addEventListener("click", function() {
     	var balance = coinBalance;
 	var input = $('#amount');
         input.val(balance)
-   console.log("sendAll: " + sendAll);
+   console.log("sendAll: " + sendAll + " " + balance);
 });
 
 function checkMandatoryField(id){
