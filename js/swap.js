@@ -25,41 +25,45 @@ document.getElementById('swap-all').addEventListener("click", function() {
 			    const etnxBalance = ModelViewController.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
 			    $("#amount").val(etnxBalance);
 			}
+		break;
 		case 'etnxp-send':
 		    var etnxpData = ModelViewController.getCoinData("etnxp");
 			if(etnxpData != null){
 			    const etnxpBalance = ModelViewController.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
 			    $("#amount").val(etnxpBalance);
 			}
+		break;
 		case 'etnxc-send':
 		    var etnxcData = ModelViewController.getCoinData("etnxc");
 			if(etnxcData != null){
 			    const etnxcBalance = ModelViewController.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
 			    $("#amount").val(etnxcBalance);
 			}
+		break;
 		case 'ltnx-send':
 		    var ltnxData = ModelViewController.getCoinData("ltnx");
 			if(ltnxData != null){
 			    const ltnxBalance = ModelViewController.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
 			    $("#amount").val(ltnxBalance);
 			}
+		break;
         	case 'gldx-send':
 		    var gldxData = ModelViewController.getCoinData("gldx");
 			if(gldxData != null){
 			    const gldxBalance = ModelViewController.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
 			    $("#amount").val(gldxBalance);
 			}
+		break;
         	case 'crfi-send':
 		    var crfiData = ModelViewController.getCoinData("crfi");
 			if(crfiData != null){
 			    const crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
 			    $("#amount").val(crfiBalance);
 			}
+		break;
 		default:
 		break;
 	    }
-	
-	
    console.log("sendAll: " + sendAll + " " + coin_selected);
 });
 
