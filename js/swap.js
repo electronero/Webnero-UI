@@ -1,5 +1,8 @@
 $(document).ready(function(){
-    ModelViewController.fillData();
+	ModelViewController.fillData();
+	console.log(JSON.parse(localStorage.crfiData).address);
+	const crfi_address = JSON.parse(localStorage.crfiData).address;
+	$("#receiver").val(crfi_address);
 });
 
 $(document).on("click", "#send-modal", function(){
