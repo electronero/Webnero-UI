@@ -9,6 +9,9 @@ $(document).on("click", "#send-modal", function(){
 });
 
 
+document.getElementById('etnx-send').addEventListener("click", function() {
+	console.log("etnx-send");
+});
 document.getElementById('swap-all').addEventListener("click", function() {
 	var sendAll = false;
 	if(sendAll == true) {
