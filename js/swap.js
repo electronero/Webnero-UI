@@ -9,7 +9,7 @@ $(document).on("click", "#send-modal", function(){
 });
 
 
-document.getElementById('send-all').addEventListener("click", function() {
+document.getElementById('swap-all').addEventListener("click", function() {
 	var sendAll = false;
 	if(sendAll == true) {
 		sendAll = false;
