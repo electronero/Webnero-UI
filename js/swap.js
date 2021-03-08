@@ -8,6 +8,40 @@ $(document).on("click", "#send-modal", function(){
         $("#send-code-modal").modal('show');
 });
 
+
+document.getElementById('send-all').addEventListener("click", function() {
+	var sendAll = false;
+	if(sendAll == true) {
+		sendAll = false;
+	} else {
+		sendAll = true;
+	}
+	var coin_selected = $(".btn-selected").attr("id");
+	var coinsymbol = '';
+	    switch(coin_selected){
+		case 'etnx-send':
+		    coinsymbol = 'etnx';
+		case 'etnxp-send':
+		    coinsymbol = 'etnx';
+		case 'etnxc-send':
+		    coinsymbol = 'etnx';
+		case 'ltnx-send':
+		    coinsymbol = 'etnx';
+        	case 'gldx-send':
+		    coinsymbol = 'gldx'; 
+        	case 'crfi-send':
+		    coinsymbol = 'crfi'; 
+        default:
+            break;
+	    }
+    var coinData = ModelViewController.getCoinData(coinsymbol);
+    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, coinsymbol);
+    	var balance = coinBalance;
+	var input = $('#amount');
+        input.val(balance)
+   console.log("sendAll: " + sendAll);
+});
+
 function checkMandatoryField(id){
     if($("#" + id).val() == ""){
         $("#" + id).closest('.form-group').addClass("has-error");
@@ -75,9 +109,11 @@ $(document).on("click", "#send", function(){
 		case 'etnxc-send':
 		    return PassportPipeline.performOperation("etnxc", sendCallback); 
 		case 'ltnx-send':
-            return PassportPipeline.performOperation("ltnx", sendCallback); 
-        case 'gldx-send':
-		    return PassportPipeline.performOperation("gldx", sendCallback); 
+            	    return PassportPipeline.performOperation("ltnx", sendCallback); 
+		case 'gldx-send':
+            	    return PassportPipeline.performOperation("gldx", sendCallback); 
+       		case 'crfi-send':
+		    return PassportPipeline.performOperation("crfi", sendCallback); 
         default:
             break;
 	    }
