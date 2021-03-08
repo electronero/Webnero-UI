@@ -2,6 +2,39 @@ $(document).ready(function(){
     ModelViewController.fillData();
 });
 
+document.getElementById('send-all').addEventListener("click", function() {
+	var sendAll = false;
+	if(sendAll == true) {
+		sendAll = false;
+	} else {
+		sendAll = true;
+	}
+	var coin_selected = $(".btn-selected").attr("id");
+	var coinsymbol = '';
+	    switch(coin_selected){
+		case 'etnx-send':
+		    coinsymbol = 'etnx';
+		case 'etnxp-send':
+		    coinsymbol = 'etnx';
+		case 'etnxc-send':
+		    coinsymbol = 'etnx';
+		case 'ltnx-send':
+		    coinsymbol = 'etnx';
+        	case 'gldx-send':
+		    coinsymbol = 'gldx'; 
+        	case 'crfi-send':
+		    coinsymbol = 'crfi'; 
+        default:
+            break;
+	    }
+    var coinData = ModelViewController.getCoinData(coinsymbol);
+    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, coinsymbol);
+    	var balance = coinBalance;
+	var input = $('#amount');
+        input.val(balance)
+   console.log("sendAll: " + sendAll);
+});
+
 $(document).on("click", "#send-modal", function(){
     $('.form-group').removeClass("has-error");
     if(checkMandatoryField("amount") && checkMandatoryField("receiver"))
