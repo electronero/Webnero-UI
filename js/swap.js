@@ -115,46 +115,20 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	var coinsymbol = '';
 	    switch(coin_selected){
 		    case 'etnx':
-		    var etnxData = ModelViewController.getCoinData("etnx");
-			if(etnxData != null){
-			    const etnxBalance = ModelViewController.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
 			    $("#amount").val(etnx.balance);
-			} 
 			    break;
 		    case 'etnxp':
-		    var etnxpData = ModelViewController.getCoinData("etnxp");
-			if(etnxpData != null){
-			    const etnxpBalance = ModelViewController.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
-			    $("#amount").val(etnxpBalance);
-			}
-			    break;
-		    case 'etnxc':
-		    var etnxcData = ModelViewController.getCoinData("etnxc");
-			if(etnxcData != null){
-			    const etnxcBalance = ModelViewController.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
-			    $("#amount").val(etnxcBalance);
-			}
+			    $("#amount").val(etnxp.balance);
 			    break;
 		    case 'ltnx':
-		    var ltnxData = ModelViewController.getCoinData("ltnx");
-			if(ltnxData != null){
-			    const ltnxBalance = ModelViewController.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
-			    $("#amount").val(ltnxBalance);
-			}
+			    $("#amount").val(ltnx.balance);
 			    break;
 		    case 'gldx':
-		    var gldxData = ModelViewController.getCoinData("gldx");
-			if(gldxData != null){
-			    const gldxBalance = ModelViewController.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
-			    $("#amount").val(gldxBalance);
-			}
+			    $("#amount").val(gldx.balance);
 			    break;
 		    case 'crfi':
-		    var crfiData = ModelViewController.getCoinData("crfi");
-			if(crfiData != null){
-			    const crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
-			    $("#amount").val(crfiBalance);
-			}
+			    $("#amount").val(crfi.balance);
+			    break;
 	    }
    console.log("sendAll: " + sendAll + " " + coin_selected);
 });
