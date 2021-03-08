@@ -9,7 +9,7 @@ $(document).on("click", "#send-modal", function(){
 });
 
 var coin_checked = {
-	coin: null;
+	coin: null
 };
 var etnx_checked = false;
 var etnxp_checked = false;
