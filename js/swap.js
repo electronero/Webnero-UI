@@ -111,46 +111,45 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	}
 	
 	console.log(Object.values(coin_checked)[0]);
-	var coin_selected = $(".btn-selected").attr("id");
+	var coin_selected = coin_checked.coin;
 	var coinsymbol = '';
 	    switch(coin_selected){
-		    case 'etnx-send':
-			   day = "Sunday";
+		    case 'etnx':
 		    var etnxData = ModelViewController.getCoinData("etnx");
 			if(etnxData != null){
 			    const etnxBalance = ModelViewController.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
-			    $("#amount").val(etnxBalance);
+			    $("#amount").val(etnx.balance);
 			} 
 			    break;
-		    case 'etnxp-send':
+		    case 'etnxp':
 		    var etnxpData = ModelViewController.getCoinData("etnxp");
 			if(etnxpData != null){
 			    const etnxpBalance = ModelViewController.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
 			    $("#amount").val(etnxpBalance);
 			}
 			    break;
-		    case 'etnxc-send':
+		    case 'etnxc':
 		    var etnxcData = ModelViewController.getCoinData("etnxc");
 			if(etnxcData != null){
 			    const etnxcBalance = ModelViewController.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
 			    $("#amount").val(etnxcBalance);
 			}
 			    break;
-		    case 'ltnx-send':
+		    case 'ltnx':
 		    var ltnxData = ModelViewController.getCoinData("ltnx");
 			if(ltnxData != null){
 			    const ltnxBalance = ModelViewController.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
 			    $("#amount").val(ltnxBalance);
 			}
 			    break;
-		    case 'gldx-send':
+		    case 'gldx':
 		    var gldxData = ModelViewController.getCoinData("gldx");
 			if(gldxData != null){
 			    const gldxBalance = ModelViewController.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
 			    $("#amount").val(gldxBalance);
 			}
 			    break;
-		    case 'crfi-send':
+		    case 'crfi':
 		    var crfiData = ModelViewController.getCoinData("crfi");
 			if(crfiData != null){
 			    const crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
