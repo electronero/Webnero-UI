@@ -21,6 +21,7 @@ document.getElementById('etnx-send').addEventListener("click", function() {
 	var etnxBalance = $('#etnx-unlocked-balance').text();
 	console.log(etnxBalance);
 	etnx_checked = true;
+	coin_checked.coin = 'etnx';
 	console.log(coin_checked);
 });
 
@@ -29,6 +30,7 @@ document.getElementById('etnxp-send').addEventListener("click", function() {
 	var etnxpBalance = $('#etnxp-unlocked-balance').text();
 	console.log(etnxpBalance);
 	etnxp_checked = true;
+	coin_checked.coin = 'etnxp';
 	console.log(coin_checked);
 });
 
@@ -37,6 +39,7 @@ document.getElementById('ltnx-send').addEventListener("click", function() {
 	var ltnxBalance = $('#ltnx-unlocked-balance').text();
 	console.log(ltnxBalance);
 	ltnx_checked = true;
+	coin_checked.coin = 'ltnx';
 	console.log(coin_checked);
 });
 
@@ -45,6 +48,7 @@ document.getElementById('gldx-send').addEventListener("click", function() {
 	var gldxBalance = $('#gldx-unlocked-balance').text();
 	console.log(gldxBalance);
 	gldx_checked = true;
+	coin_checked.coin = 'gldx';
 	console.log(coin_checked);
 });
 
@@ -53,6 +57,7 @@ document.getElementById('crfi-send').addEventListener("click", function() {
 	var crfiBalance = $('#crfi-unlocked-balance').text();
 	console.log(crfiBalance);
 	crfi_checked = true;
+	coin_checked.coin = 'crfi';
 	console.log(coin_checked);
 });
 document.getElementById('swap-all').addEventListener("click", function() {
@@ -79,6 +84,8 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	} else {
 		console.log("ERROR");
 	}
+	
+	console.log(Object.values(coin_checked)[0]);
 	var coin_selected = $(".btn-selected").attr("id");
 	var coinsymbol = '';
 	    switch(coin_selected){
