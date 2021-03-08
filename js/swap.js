@@ -21,21 +21,26 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	    switch(coin_selected){
 		case 'etnx-send':
 		    var coinData = ModelViewController.getCoinData("etnx");
+		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "etnx");
 		case 'etnxp-send':
 		    var coinData = ModelViewController.getCoinData("etnxp");
+		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "etnxp");
 		case 'etnxc-send':
 		    var coinData = ModelViewController.getCoinData("etnxc");
+		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "etnxc");
 		case 'ltnx-send':
 		    var coinData = ModelViewController.getCoinData("ltnx");
+		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "ltnx");
         	case 'gldx-send':
 		    var coinData = ModelViewController.getCoinData("gldx");
+		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "gldx");
         	case 'crfi-send':
 	            var coinData = ModelViewController.getCoinData("crfi");
+		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "crfi");
 		default:
 		break;
 	    }
-    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, coinsymbol);
-    	var balance = coinBalance;
+	var balance = coinBalance;
 	var input = $('#amount');
         input.val(balance)
    console.log("sendAll: " + sendAll + " " + balance);
