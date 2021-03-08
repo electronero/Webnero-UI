@@ -1,0 +1,429 @@
+<!-- layout.njk -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Webnero</title>
+
+        <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../plugins/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
+        <link href="../fonts/fonts.css" rel="stylesheet" type="text/css">
+        <link href="../dist/css/etnx.css?v=2023" rel="stylesheet" type="text/css">
+        <link href="../dist/css/light.css?v=2023" rel="stylesheet" type="text/css">
+        <link href="../dist/css/spinner.css" rel="stylesheet" type="text/css">
+        <link href="../dist/css/slider_button.css" rel="stylesheet" type="text/css">
+        <!-- <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+        <script type="text/javascript" src="../dist/js/theme.js"></script>
+        
+        
+      <div id="wrapper">
+
+        <!-- navigation.njk -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        
+        <img height="40px" width="40px" src="../img/crfi.png" />
+        
+        <a class="navbar-brand" href="index.html">Webnero v1.0.1</a>
+    </div>
+
+    <ul class="nav navbar-top-links navbar-right">
+        <li>
+            <a id="light-mode" href="#">
+                <i class="fa fa-sun-o fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a id="dark-mode" href="#">
+                <i class="fa fa-moon-o fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a id="status-updates" href="#">
+                <span id="daemon-status" style="color: SpringGreen;"><i class="fas fa-signal"></i></span>   <span id="status-area" style="color: SpringGreen;"></span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="side-menu-first">
+                    <a href="index.html"><i class="fa fas fa-piggy-bank"></i> Vault</a>
+                </li>
+                <li>
+                    <a href="send.html"><i class="fa fas fa-exchange-alt"></i> Transfer</a>
+                </li>
+                <li>
+                    <a href="farming.html"><i class="fa fas fa-hand-holding-usd"></i> Farm</a>
+                </li>
+                <li>
+                    <a href="stake.html"><i class="fa fas fa-chart-line"></i> Stake</a>
+                </li>
+                <li>
+                    <a href="history.html"><i class="fa fas fa-stream"></i> History</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fa fa-gear fa-fw"></i> Account</a>
+                </li>
+                <li>
+                    <a id="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 item">
+                    
+                    
+<div class="panel panel-crfi">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3 col-lg-3 col-md-3">
+            <img height="70px" width="70px" src="../img/crfi.png" />
+            </div>
+            
+            <link rel="stylesheet" href="../css/card.css" />
+            
+            <div class="col-xs-9 col-lg-9 col-md-9">
+                <div id="crfi-balance" class="huge align indexedalign text-right"></div>
+                <div class="align text-right">CRFI Vault Balance</div>
+            </div>
+        </div>        
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-footer">
+        <div class="col-xs-12">
+        <span>CRFI Unlocked: <span id="crfi-unlocked-balance"></span></span>  
+        </br>
+        <span>USDt: <span id="crfi-usdt-balance"></span></span> 
+        </br>
+        <span>BTC: <span id="crfi-btc-balance"></span></span>
+        </br>
+        <span>ETH: <span id="crfi-eth-balance"></span></span>
+        </br>
+        <span>LTC: <span id="crfi-ltc-balance"></span></span>
+        </br>
+        </div>   
+        
+        <div class="clearfix"></div>
+    </div>                       
+</div>
+
+
+                </div>
+            </div>
+              <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a onclick="farm()" class="nav-link active" href="#">Farm</a>
+              </li>
+              <li class="nav-item">
+                <a onclick="claim()" class="nav-link" href="#">Claim</a>
+              </li>
+            </ul>
+              </br>
+      <div class="row" style="margin: 0 auto;" align="center">
+            <div class="container">
+           <div class="col-lg-6 d-flex justify-content-center">
+                          <div class="card border-success mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-transparent border-success " style="color: 5bc0de;">Header</div>
+                          <div class="card-body ">
+                            <h5 class="card-title" style="color: 5bc0de;">CDP 1 year</h5>
+                            <p class="card-text " style="color: 5bc0de;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                          <div class="card-footer bg-transparent border-success" style="color: 5bc0de;">Footer</div>
+                        </div>
+           </div>
+           <div class="col-lg-6 d-flex justify-content-center">
+                          <div class="card border-success mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-transparent border-success " style="color: 5bc0de;">Header</div>
+                          <div class="card-body ">
+                            <h5 class="card-title" style="color: 5bc0de;">CDP 1 year</h5>
+                            <p class="card-text " style="color: 5bc0de;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                          <div class="card-footer bg-transparent border-success" style="color: 5bc0de;">Footer</div>
+                        </div>
+                  </div>
+                  </br></br></br>
+      </div>
+            <div class="row" style="margin: 0 auto;" align="center">
+            <div class="col-lg-6 d-flex justify-content-center">
+                          <div class="card border-success mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-transparent border-success " style="color: 5bc0de;">Open Farming Positions</div>
+                          <div class="card-body ">
+                            <h5 class="card-title " style="color: 5bc0de;">Farm CRFI</h5>
+                                <h5 class="card-title " style="color: 5bc0de;">Balance: <span><span class="claims" id="-unlocked-farm"></span></span> </h5>
+                                  <form>
+                                      <div class="form-group">
+                                        <label for="exampleFormControlInput1" style="color: 5bc0de;">Amount</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="0.001">
+                                      </div>
+                                        <div>
+                                        <button id="25_percent" type="button" class="btn btn-default">25%</button>
+                                          <button id="50_percent" type="button" class="btn btn-default">50%</button>
+                                          <button id="75_percent" type="button" class="btn btn-default">75%</button>
+                                          <button id="100_percent" type="button" class="btn btn-default">100%</button>
+                                        </div>
+                                        </br>
+                                      <div class="form-group">
+                                        <label for="exampleFormControlSelect1" style="color: 5bc0de;">Example select</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                      </div>
+                                  </form>
+                          </div>
+                          <div id="farm" class="card-footer bg-transparent border-success"><button type="button" class="btn btn-success" style="color: 5bc0de;">Earn</button>
+                                </div>
+                        </div>
+                   </br></br>
+           </div>
+           <div id="claim" class="col-lg-6 d-flex justify-content-center">
+                          <div class="card border-success mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-transparent border-success" style="color: 5bc0de;">Close Farming Positions</div>
+                          <div class="card-body text-success">
+                            <h5 class="card-title text-success" style="color: 5bc0de;">Claim CRFI</h5>
+                                  <h5 class="card-title text-success" style="color: 5bc0de;">Balance: <span><span class="claims" id="-unlocked-claim"></span></span> </h5>
+                            <form>
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1" class="text-success" style="color: 5bc0de;">Amount</label>
+                                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="0.001">
+                                </div>
+                                  <div>
+                                  <button id="25_percent" type="button" class="btn btn-default">25%</button>
+                                    <button id="50_percent" type="button" class="btn btn-default">50%</button>
+                                    <button id="75_percent" type="button" class="btn btn-default">75%</button>
+                                    <button id="100_percent" type="button" class="btn btn-default">100%</button>
+                                  </div>
+                                  </br>
+                                <div class="form-group">
+                                    
+
+                                  <label for="exampleFormControlSelect1" class="text-success" style="color: 5bc0de;">Example select</label>
+                                  <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                  </select>
+                                </div>
+                            </form>
+                          </div>
+                          <div class="card-footer bg-transparent border-success">
+                          <button id="claim" type="button" class="btn btn-danger" style="color: 5bc0de;">Claim</button></div>
+                        </div>
+
+                 </br></br>
+                 </div>
+            </br></br>
+            
+            <div class="row">
+                                <div class="form-group" style="text-align: center">
+                                    
+                                        <button id="crfi-stake" class="btn btn-lg btn-login coin-selector ">
+                                            <img height="70px" width="70px" src="../img/crfi.png" />
+                                        </button>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div role="form">
+                                        <label>DeFi Farm coming soon</label>
+                                        <div class="form-group input-group">
+                                            <input id="amount" type="number" class="form-control">
+                                            <span class="input-group-addon" id="stake-all">
+                                            All</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>CRFI Farming Reward Address</label>
+                                            <input id="receiver" class="form-control" placeholder="CRFI address...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Farm Interval</label>
+                                        <select id="interval" class="form-control">
+                                          <option value="3">Quarterly (3 months)</option>
+                                          <option value="6">Bi-Annual (6 months)</option>
+                                          <option value="12">Annual (12 months)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Payment ID (optional)</label>
+                                        <input id="pid" class="form-control" placeholder="16 or 64 hexadecimal characters">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>USDT bridge</label>
+                                        <input id="usdt-address" class="form-control" placeholder="USDT return address">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>BTC bridge</label>
+                                        <input id="btc-address" class="form-control" placeholder="BTC return address">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>ETH bridge</label>
+                                        <input id="eth-address" class="form-control" placeholder="ETH return address">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>LTC bridge</label>
+                                        <input id="ltc-address" class="form-control" placeholder="LTC return address">
+                                    </div>
+                                </div>
+                            </div>
+            
+        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-crfi" style="margin-bottom: 0;">
+                <div class="panel-body" style="height: 300px">
+                    <div class="row" style="text-align: center; margin-top: 65px;">
+                        <img height="80px" width="80px" src="../img/crfi.png" />
+                    </div>
+                    <div class="row">
+                        <div class="cssload-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+           
+            </div> 
+      </div>
+
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Your wallets
+                        </div>
+                       <div class="panel-body">
+                            
+                            
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="blockquote">CRFI Wallet</h4>
+        <blockquote class="selected">
+            <button style="background-color: white; color: black" onclick="copyToClipboard('#crfi-wallet')">
+        <p id="crfi-wallet" name="crfi-value"></p>
+        </button>
+        </blockquote>
+    </div>
+</div>
+<div class="row" style="text-align: center">
+    <div class="col-lg-12">
+        <div id="crfi-qrimage">
+            <img id="qrious-crfi">
+        </div>
+    </div>
+</div>
+
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-crfi" style="margin-bottom: 0;">
+                <div class="panel-body" style="height: 300px">
+                    <div class="row" style="text-align: center; margin-top: 65px;">
+                        <img height="80px" width="80px" src="../img/crfi.png" />
+                    </div>
+                    <div class="row">
+                        <div class="cssload-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+
+
+        <script type="text/javascript" src="../dist/js/locals.js?v=1996"></script>
+        <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../dist/js/ifnot.js"></script>
+        <script type="text/javascript" src="../dist/js/crypto.js?v=2033"></script>
+        <script type="text/javascript" src="../dist/js/utils.js?v=2035"></script>
+        <script type="text/javascript" src="../dist/js/passport.js?v=2052"></script>
+        <script type="text/javascript" src="../dist/js/electronero.js?v=2030"></script>
+        <script src="https://kit.fontawesome.com/093904e10c.js" crossorigin="anonymous"></script>
+        
+         
+    <script type="text/javascript" src="../plugins/metisMenu/metisMenu.min.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
+    <script type="text/javascript" src="../dist/js/farm.js?v=1990"></script>
+
+
+    </body>
+
+</html>

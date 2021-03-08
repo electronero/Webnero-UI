@@ -1,0 +1,444 @@
+<!-- layout.njk -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Webnero</title>
+
+        <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../plugins/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
+        <link href="../fonts/fonts.css" rel="stylesheet" type="text/css">
+        <link href="../dist/css/etnx.css?v=2023" rel="stylesheet" type="text/css">
+        <link href="../dist/css/light.css?v=2023" rel="stylesheet" type="text/css">
+        <link href="../dist/css/spinner.css" rel="stylesheet" type="text/css">
+        <link href="../dist/css/slider_button.css" rel="stylesheet" type="text/css">
+        <!-- <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+        <script type="text/javascript" src="../dist/js/theme.js"></script>
+        
+        
+      <div id="wrapper">
+
+        <!-- navigation.njk -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        
+        <img height="40px" width="40px" src="../img/crfi.png" />
+        
+        <a class="navbar-brand" href="index.html">Webnero v1.0.1</a>
+    </div>
+
+    <ul class="nav navbar-top-links navbar-right">
+        <li>
+            <a id="light-mode" href="#">
+                <i class="fa fa-sun-o fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a id="dark-mode" href="#">
+                <i class="fa fa-moon-o fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a id="status-updates" href="#">
+                <span id="daemon-status" style="color: SpringGreen;"><i class="fas fa-signal"></i></span>   <span id="status-area" style="color: SpringGreen;"></span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="side-menu-first">
+                    <a href="index.html"><i class="fa fas fa-piggy-bank"></i> Vault</a>
+                </li>
+                <li>
+                    <a href="send.html"><i class="fa fas fa-exchange-alt"></i> Transfer</a>
+                </li>
+                <li>
+                    <a href="farming.html"><i class="fa fas fa-hand-holding-usd"></i> Farm</a>
+                </li>
+                <li>
+                    <a href="stake.html"><i class="fa fas fa-chart-line"></i> Stake</a>
+                </li>
+                <li>
+                    <a href="history.html"><i class="fa fas fa-stream"></i> History</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fa fa-gear fa-fw"></i> Account</a>
+                </li>
+                <li>
+                    <a id="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 item">
+                  
+                  <link rel="stylesheet" href="../css/card_index.css" />
+                  
+                    
+                    
+<div class="panel panel-crfi">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3 col-lg-3 col-md-3">
+            <img height="70px" width="70px" src="../img/crfi.png" />
+            </div>
+            
+            <link rel="stylesheet" href="../css/card.css" />
+            
+            <div class="col-xs-9 col-lg-9 col-md-9">
+                <div id="crfi-balance" class="huge align indexedalign text-right"></div>
+                <div class="align text-right">CRFI Vault Balance</div>
+            </div>
+        </div>        
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-footer">
+        <div class="col-xs-12">
+        <span>CRFI Unlocked: <span id="crfi-unlocked-balance"></span></span>  
+        </br>
+        <span>USDt: <span id="crfi-usdt-balance"></span></span> 
+        </br>
+        <span>BTC: <span id="crfi-btc-balance"></span></span>
+        </br>
+        <span>ETH: <span id="crfi-eth-balance"></span></span>
+        </br>
+        <span>LTC: <span id="crfi-ltc-balance"></span></span>
+        </br>
+        </div>   
+        
+        <div class="clearfix"></div>
+    </div>                       
+</div>
+
+
+                </div>
+                <div class="col-lg-4 col-md-12 item">
+                    
+                    
+<div class="panel panel-crfi">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3 col-lg-3 col-md-3">
+            <img height="70px" width="70px" src="../img/crfi.png" />
+            </div>
+            
+            <link rel="stylesheet" href="../css/card.css" />
+            
+            <div class="col-xs-9 col-lg-9 col-md-9">
+                <div id="-balance" class="huge align indexedalign text-right crfi-staked-balance">0.000000000000</div>
+                <div class="align text-right">crfi Stake Balance</div>
+            </div>
+        </div>        
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-footer">
+        <div class="col-xs-12">
+        <a href="https://id.crystaleum.org/stake.html"><button type="button" class="btn btn-success">quote</button></a>
+        <a href="https://id.crystaleum.org/stake.html"><button type="button" class="btn btn-success">stake</button></a>
+        </br>
+        <span class="text-left">crfi Unlocked: <span class="crfi-unlocked-balance"></span></span>  
+        </div>   
+        
+        <div class="clearfix"></div>
+    </div>                       
+</div>
+
+
+                </div>
+            </div>
+              
+            
+                        
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="stake-panel stake panel panel-crfi">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Bake Crystaleum
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="staking-type false active" data-stakekey="bake_tezos">
+                                        <h4 style="margin-bottom: var(--space);">Bake CRFI</h4>
+                                        <section class="stake-stat"><span class="name">Network Fee: </span><span id="est_performance_value" data-negative="false"></span></section>
+                                        <section class="stake-stat"><span class="name">Collateral: </span><span id="collateral_value"></span></section>
+                                        <section class="stake-stat"><span class="name">Mint: </span><span id="est_reward_value" data-negative="false"></span></section>
+                                        <section class="stake-stat"><span class="name">Gross Yield: </span><span id="quoted_value"></span></section>
+                                        <section class="stake-stat"><span class="name">Net Yield: </span><span id="est_return_value" data-negative="false"></span></section>
+                                        <section class="stake-stat"><span class="name">Lock-Up Period: </span><span id="lock_value"></span></section>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-8" style="text-align: center">
+                                    
+                                        <button id="crfi-stake" class="btn btn-lg btn-login coin-selector ">
+                                            <img height="70px" width="70px" src="../img/crfi.png" />
+                                        </button>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            <div class="row">
+                              <div role="form">
+                                <div class="col-lg-3">
+                                        <label>Baking Supply</label>
+                                      <div class="form-group input-group">
+                                          <input id="amount" type="number" class="form-control" placeholder="0.001">
+                                          <span class="input-group-addon" id="stake-all">
+                                          All</span>
+                                      </div>
+                                </div>
+                                <div class="col-lg-3">
+                                        <label>Bake Percentage</label>
+                                        </br>
+                                        <button id="25_percent" type="button" class="btn btn-default" value="25">25%</button>
+                                        <button id="50_percent" type="button" class="btn btn-default" value="50">50%</button>
+                                        <button id="75_percent" type="button" class="btn btn-default" value="75">75%</button>
+                                        <button id="100_percent" type="button" class="btn btn-default" value="100">100%</button>
+                                </div>
+                                <div class="col-lg-6">
+                                        <label>Bake Time</label>
+                                        <select id="interval" class="form-control">
+                                          <option value="10.0">Daily (1 day) x10% yield</option>
+                                          <option value="20.0">Weekly (1 week) x20% yield</option>
+                                          <option value="33.0">Monthly (1 month) x33% yield</option>
+                                          <option value="38.0">Quarterly (3 months) x38% yield</option>
+                                          <option value="40.0">Bi-Annual (6 months) x40% yield</option>
+                                          <option id="default_oven" selected="selected" value="50.0">Annual (12 months) x50% yield</option>
+                                        </select>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="row">
+                              <div role="form">
+                                 <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Baking Yield Address</label>
+                                            <input id="receiver" class="form-control" placeholder="CRFI address...">
+                                        </div>
+                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Payment ID (optional)</label>
+                                        <input id="pid" class="form-control" placeholder="16 or 64 hexadecimal characters">
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="form-group" style="text-align: center">
+                                    <button id="quote-stake" class="btn btn-lg btn-login btn-primary" style="width: 100px"> Quote </button>
+                                    <button id="stake-modal" class="btn btn-lg btn-login btn-primary" style="width: 100px"> Stake </button>
+                                    <button id="cancel" class="btn btn-lg btn-login btn-primary" style="width: 100px"> Cancel </button>
+                                </div>
+                            </div>
+
+        </div> 
+      
+
+        <div class="modal fade" id="send-code-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-crfi" style="margin-bottom: 0;">
+                <div class="panel-heading" style="text-align: center">
+                    
+                        <img height="40px" width="40px" src="../img/crfi.png" />
+                    
+                        <img height="40px" width="40px" src="../img/etnx.png" />
+                    
+                        <img height="40px" width="40px" src="../img/etnxp.png" />
+                    
+                        <img height="40px" width="40px" src="../img/ltnx.png" />
+                    
+                        <img height="40px" width="40px" src="../img/gldx.png" />
+                    
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-danger" style="display: none">
+                    </div>
+                    <div class="alert alert-success" style="display: none">
+                        Transfer success!
+                    </div>
+                    <div role="form">
+                        <fieldset>
+                            <div class="form-group" style="text-align: center">
+                                <input id="digit-1" class="form-control inputDigit" type="password" style="width: 34px; display: inline-block" disabled>
+                                <input id="digit-2" class="form-control inputDigit" type="password" style="width: 34px; display: inline-block" disabled>
+                                <input id="digit-3" class="form-control inputDigit" type="password" style="width: 34px; display: inline-block" disabled>
+                                <input id="digit-4" class="form-control inputDigit" type="password" style="width: 34px; display: inline-block" disabled>
+                                <input id="digit-5" class="form-control inputDigit" type="password" style="width: 34px; display: inline-block" disabled>
+                            </div>
+                            <div class="form-group" style="text-align: center">
+                                <button id="1" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">1</button>
+                                <button id="2" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">2</button>
+                                <button id="3" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">3</button>
+                            </div>
+                            <div class="form-group" style="text-align: center">
+                                <button id="4" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">4</button>
+                                <button id="5" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">5</button>
+                                <button id="6" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">6</button>
+                            </div>
+                            <div class="form-group" style="text-align: center">
+                                <button id="7" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">7</button>
+                                <button id="8" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">8</button>
+                                <button id="9" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">9</button>
+                            </div>
+                            <div class="form-group" style="text-align: center">
+                                <button id="0" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">0</button>
+                            </div>
+                            <button id="del" type="button" class="btn btn-lg btn-login btn-block btn-primary btn-code">Delete</button>
+                            <button id="send" type="button" class="btn btn-lg btn-login btn-block btn-primary btn-code">Send</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-crfi" style="margin-bottom: 0;">
+                <div class="panel-body" style="height: 300px">
+                    <div class="row" style="text-align: center; margin-top: 65px;">
+                        <img height="80px" width="80px" src="../img/crfi.png" />
+                    </div>
+                    <div class="row">
+                        <div class="cssload-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" />
+	<link rel="stylesheet" href="../css/modal.css" />
+
+ 
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+
+<!-- Modal HTML -->
+<div id="success_modal" class="modal fade">
+	<div class="modal-send modal-send-success">
+		<div class="modal-content">
+			<div class="modal-header justify-content-center">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body text-center">
+				<h4>Transfer Success!</h4>	
+				<p id="transaction-success"></p>
+				<button class="btn btn-success" data-dismiss="modal"><span>Return Home (6s)</span> <i class="material-icons">&#xE5C8;</i></button>
+			</div>
+		</div>
+	</div>
+</div>   
+
+
+        
+        
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" />
+	<link rel="stylesheet" href="../css/fail_modal.css" />
+
+ 
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+
+<!-- Modal HTML -->
+<div id="fail_modal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE86B;</i>
+					<i class="material-icons">&#xE86B;</i>
+					<i class="material-icons">&#xE645;</i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
+			</div>
+			<div class="modal-body text-center">
+				<h4>Transaction Error</h4>	
+				<p id="transaction-fail">
+				</p>
+				<button class="btn btn-primary" data-dismiss="modal">Go Back</button>
+			</div>
+		</div>
+	</div>
+</div>    
+
+    </div>
+
+                  
+
+
+
+        <script type="text/javascript" src="../dist/js/locals.js?v=1996"></script>
+        <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../dist/js/ifnot.js"></script>
+        <script type="text/javascript" src="../dist/js/crypto.js?v=2033"></script>
+        <script type="text/javascript" src="../dist/js/utils.js?v=2035"></script>
+        <script type="text/javascript" src="../dist/js/passport.js?v=2052"></script>
+        <script type="text/javascript" src="../dist/js/electronero.js?v=2030"></script>
+        <script src="https://kit.fontawesome.com/093904e10c.js" crossorigin="anonymous"></script>
+        
+         
+    <script type="text/javascript" src="../plugins/metisMenu/metisMenu.min.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
+    <script type="text/javascript" src="../dist/js/stake.js?v=3033"></script>
+
+
+    </body>
+
+</html>

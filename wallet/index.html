@@ -45,7 +45,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">WEBNERO v0.1.0</a>
+        <a class="navbar-brand" href="index.html">WEBNERO v1.0.1</a>
     </div>
 
     <ul class="nav navbar-top-links navbar-right">
@@ -85,6 +85,7 @@
         </div>
     </div>
 </nav>
+
 
         <div id="page-wrapper">
             <div class="row">
@@ -184,6 +185,31 @@
     <div class="panel-footer">
         <span class="pull-left">Unlocked Balance</span>
         <span id="gldx-unlocked-balance" class="pull-right"></span>
+        <div class="clearfix"></div>
+    </div>                       
+</div>
+
+
+                </div>
+                <div class="col-lg-4 col-md-12 item">
+                    
+                    
+
+<div class="panel panel-crfi">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <img height="70px" width="70px" src="../img/crfi.png" />
+            </div>
+            <div class="col-xs-9 text-right">
+                <div id="crfi-balance" class="huge"></div>
+                <div>Balance</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="pull-left">Unlocked Balance</span>
+        <span id="crfi-unlocked-balance" class="pull-right"></span>
         <div class="clearfix"></div>
     </div>                       
 </div>
@@ -290,6 +316,29 @@
 
 
                             
+                            
+                            
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="blockquote">CRFI Wallet</h4>
+        <blockquote class="selected">
+            <button style="background-color: white; color: black" onclick="copyToClipboard('#crfi-wallet')">
+        <p id="crfi-wallet" name="crfi-value"></p>
+        </button>
+        </blockquote>
+    </div>
+</div>
+<div class="row" style="text-align: center">
+    <div class="col-lg-12">
+        <div id="crfi-qrimage">
+            <img id="qrious-crfi">
+        </div>
+    </div>
+</div>
+
+
+                            
                         </div>
                     </div>
                 </div>
@@ -310,6 +359,8 @@
                             <img height="80px" width="80px" src="../img/ltnx.png" />
                         
                             <img height="80px" width="80px" src="../img/gldx.png" />
+                        
+                            <img height="80px" width="80px" src="../img/crfi.png" />
                         
                     </div>
                     <div class="row">
@@ -333,18 +384,17 @@
 
         <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-        
-        <script type="text/javascript" src="../dist/js/crypto.js"></script>
-        <script type="text/javascript" src="../dist/js/utils.js"></script>
-        <script type="text/javascript" src="../dist/js/passport.js"></script>
-        <script type="text/javascript" src="../dist/js/etnx.js"></script>
+        <script type="text/javascript" src="../dist/js/crypto.js?v=3034"></script>
+        <script type="text/javascript" src="../dist/js/utils.js?v=3034"></script>
+        <script type="text/javascript" src="../dist/js/passport.js?v=3063"></script>
+        <script type="text/javascript" src="../dist/js/etnx.js?v=3064"></script>
         
          
     <script type="text/javascript" src="../dist/js/locals.js"></script>
     <script type="text/javascript" src="../plugins/metisMenu/metisMenu.min.js"></script>
-    <script type="text/javascript" src="../plugins/qrious/qrious.js"></script>
-    <script type="text/javascript" src="../dist/js/qr-gen.js"></script>
-    <script type="text/javascript" src="../dist/js/index.js"></script>
+    <script type="text/javascript" src="../plugins/qrious/qrious.js?v=2021"></script>
+    <script type="text/javascript" src="../dist/js/qr-gen.js?v=2022"></script>
+    <script type="text/javascript" src="../dist/js/index.js?v=1992"></script>
 
 
     </body>

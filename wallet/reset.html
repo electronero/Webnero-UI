@@ -11,16 +11,16 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>WebNero</title>
+        <title>Webnero</title>
 
         <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../plugins/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
         <link href="../fonts/fonts.css" rel="stylesheet" type="text/css">
-        <link href="../dist/css/etnx.css" rel="stylesheet" type="text/css">
-        <link href="../dist/css/light.css" rel="stylesheet" type="text/css">
+        <link href="../dist/css/etnx.css?v=2023" rel="stylesheet" type="text/css">
+        <link href="../dist/css/light.css?v=2023" rel="stylesheet" type="text/css">
         <link href="../dist/css/spinner.css" rel="stylesheet" type="text/css">
         <link href="../dist/css/slider_button.css" rel="stylesheet" type="text/css">
-        <link href="../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,41 +32,44 @@
     </head>
 
     <body>
+        <script type="text/javascript" src="../dist/js/theme.js"></script>
         
         
-
+<div class="login-root bodyfade">
     <div class="container">
-        <div id="register-container" class="row">
+        <div id="reset-container" class="row bodyfade">
             <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-etnx">
+                <div class="login-panel panel panel-crfi">
                     <div class="panel-heading" style="text-align: center">
                         
-                            <img height="40px" width="40px" src="../img/etnx.png" />
-                        
-                            <img height="40px" width="40px" src="../img/etnxp.png" />
-                        
-                            <img height="40px" width="40px" src="../img/ltnx.png" />
-                        
-                            <img height="40px" width="40px" src="../img/gldx.png" />
-                        
-                            <img height="40px" width="40px" src="../img/crfi.png" />
+                        <img height="250px" width="250px" src="../img/crfi.png" />
                         
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-danger" style="display: none">
+                            Reset fail, please confirm email matches your account, or try another email address.
                         </div>
+                        
+                        <div class="alert alert-success" style="display: none">
+                           Email sent! To reset your CrystalID password, please check your email for the link.
+                        </div>
+                        
+                        
                         <div role="form">
+                        <div>
+                        <a href="https://id.crystaleum.org/register.html">Register</a>
+                        </div>
+                        <div>
+                        <a href="https://id.crystaleum.org/login.html">Login</a>
+                        </div>
                             <fieldset>
                                 <div class="form-group">
                                     <input id="email" class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input id="confirm-email" class="form-control" placeholder="Confirm E-mail" name="confirm-email" type="email" value="">
                                 </div>
-                                <div class="form-group">
-                                    <input id="re-password" class="form-control" placeholder="Re-type Password" name="re-password" type="password" value="">
-                                </div>
-                                <button id="register" type="button" class="btn btn-lg btn-login btn-block btn-primary">Set Code</button>
+                                <button id="reset" class="btn btn-lg btn-login btn-block btn-primary">Reset Password</button>
                             </fieldset>
                         </div>
                     </div>
@@ -75,8 +78,10 @@
         </div>
         <div id="pin-code-container" class="row" style="display: none">
     <div class="col-md-4 col-md-offset-4">
-        <div class="login-panel panel panel-etnx">
+        <div class="login-panel panel panel-crfi">
             <div class="panel-heading" style="text-align: center">
+                
+                    <img height="40px" width="40px" src="../img/crfi.png" />
                 
                     <img height="40px" width="40px" src="../img/etnx.png" />
                 
@@ -85,8 +90,6 @@
                     <img height="40px" width="40px" src="../img/ltnx.png" />
                 
                     <img height="40px" width="40px" src="../img/gldx.png" />
-                
-                    <img height="40px" width="40px" src="../img/crfi.png" />
                 
             </div>
             <div class="panel-body">
@@ -119,32 +122,23 @@
                         <div class="form-group" style="text-align: center">
                             <button id="0" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">0</button>
                         </div>
-                        <button id="del" type="button" class="btn btn-lg btn-login btn-block btn-primary">Cancel</button>
-                        <button id="pin-code" type="button" class="btn btn-lg btn-login btn-block btn-primary">Login</button>
+                        <button id="del" type="button" class="btn btn-lg btn-login btn-block btn-primary">Delete</button>
+                        <button id="pin-code" type="button" class="btn btn-lg btn-login btn-block btn-primary">Submit</button>
                     </fieldset>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
     </div>
     <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="panel panel-etnx" style="margin-bottom: 0;">
+            <div class="panel panel-crfi" style="margin-bottom: 0;">
                 <div class="panel-body" style="height: 300px">
                     <div class="row" style="text-align: center; margin-top: 65px;">
-                        
-                            <img height="80px" width="80px" src="../img/etnx.png" />
-                        
-                            <img height="80px" width="80px" src="../img/etnxp.png" />
-                        
-                            <img height="80px" width="80px" src="../img/ltnx.png" />
-                        
-                            <img height="80px" width="80px" src="../img/gldx.png" />
-                        
-                            <img height="80px" width="80px" src="../img/crfi.png" />
-                        
+                        <img height="80px" width="80px" src="../img/crfi.png" />
                     </div>
                     <div class="row">
                         <div class="cssload-loader">
@@ -161,17 +155,21 @@
     </div>
 </div>
 
+</div>
 
+        <script type="text/javascript" src="../dist/js/locals.js?v=1996"></script>
         <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../dist/js/crypto.js?v=3034"></script>
-        <script type="text/javascript" src="../dist/js/utils.js?v=3034"></script>
-        <script type="text/javascript" src="../dist/js/passport.js?v=3063"></script>
-        <script type="text/javascript" src="../dist/js/etnx.js?v=3064"></script>
+        <script type="text/javascript" src="../dist/js/ifnot.js"></script>
+        <script type="text/javascript" src="../dist/js/crypto.js?v=2033"></script>
+        <script type="text/javascript" src="../dist/js/utils.js?v=2035"></script>
+        <script type="text/javascript" src="../dist/js/passport.js?v=2052"></script>
+        <script type="text/javascript" src="../dist/js/electronero.js?v=2030"></script>
+        <script src="https://kit.fontawesome.com/093904e10c.js" crossorigin="anonymous"></script>
         
          
-    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
-    <script type="text/javascript" src="../dist/js/register.js?v=1992"></script>
+    <script type="text/javascript" src="../dist/js/login-utils.js?v=2029"></script>
+    <script type="text/javascript" src="../dist/js/reset.js?v=2030"></script>
 
 
     </body>
