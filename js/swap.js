@@ -8,35 +8,52 @@ $(document).on("click", "#send-modal", function(){
         $("#send-code-modal").modal('show');
 });
 
-
+var coin_checked = {
+	coin: null;
+};
+var etnx_checked = false;
+var etnxp_checked = false;
+var ltnx_checked = false;
+var gldx_checked = false;
+var crfi_checked = false;
 document.getElementById('etnx-send').addEventListener("click", function() {
 	console.log("etnx-send");
 	var etnxBalance = $('#etnx-unlocked-balance').text();
 	console.log(etnxBalance);
+	etnx_checked = true;
+	console.log(coin_checked);
 });
 
 document.getElementById('etnxp-send').addEventListener("click", function() {
 	console.log("etnxp-send");
 	var etnxpBalance = $('#etnxp-unlocked-balance').text();
 	console.log(etnxpBalance);
+	etnxp_checked = true;
+	console.log(coin_checked);
 });
 
 document.getElementById('ltnx-send').addEventListener("click", function() {
 	console.log("ltnx-send");
 	var ltnxBalance = $('#ltnx-unlocked-balance').text();
 	console.log(ltnxBalance);
+	ltnx_checked = true;
+	console.log(coin_checked);
 });
 
 document.getElementById('gldx-send').addEventListener("click", function() {
 	console.log("gldx-send");
 	var gldxBalance = $('#gldx-unlocked-balance').text();
 	console.log(gldxBalance);
+	gldx_checked = true;
+	console.log(coin_checked);
 });
 
 document.getElementById('crfi-send').addEventListener("click", function() {
 	console.log("crfi-send");
 	var crfiBalance = $('#crfi-unlocked-balance').text();
 	console.log(crfiBalance);
+	crfi_checked = true;
+	console.log(coin_checked);
 });
 document.getElementById('swap-all').addEventListener("click", function() {
 	var sendAll = false;
@@ -44,6 +61,20 @@ document.getElementById('swap-all').addEventListener("click", function() {
 		sendAll = false;
 	} else {
 		sendAll = true;
+	}
+	if(coin_checked.coin === 'etnx'){
+		console.log("ETNX");
+	}
+	else if(coin_checked.coin === 'etnxp'){
+		console.log("ETNX");
+	}
+	else if(coin_checked.coin === 'ltnx'){
+		console.log("ETNX");
+	}
+	else if(coin_checked.coin === 'gldx'){
+		console.log("ETNX");
+	} else {
+		console.log("CRFI");
 	}
 	var coin_selected = $(".btn-selected").attr("id");
 	var coinsymbol = '';
