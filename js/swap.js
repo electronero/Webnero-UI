@@ -22,11 +22,11 @@ document.getElementById('swap-all').addEventListener("click", function() {
 		case 'etnx-send':
 		    coinsymbol = 'etnx';
 		case 'etnxp-send':
-		    coinsymbol = 'etnx';
+		    coinsymbol = 'etnxp';
 		case 'etnxc-send':
-		    coinsymbol = 'etnx';
+		    coinsymbol = 'etnxc';
 		case 'ltnx-send':
-		    coinsymbol = 'etnx';
+		    coinsymbol = 'ltnx';
         	case 'gldx-send':
 		    coinsymbol = 'gldx'; 
         	case 'crfi-send':
