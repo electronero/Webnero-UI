@@ -20,30 +20,47 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	var coinsymbol = '';
 	    switch(coin_selected){
 		case 'etnx-send':
-		    var coinData = ModelViewController.getCoinData("etnx");
-		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "etnx");
+		    var etnxData = ModelViewController.getCoinData("etnx");
+			if(etnxData != null){
+			    const etnxBalance = ModelViewController.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
+			    $("#amount").val(etnxBalance);
+			}
 		case 'etnxp-send':
-		    var coinData = ModelViewController.getCoinData("etnxp");
-		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "etnxp");
+		    var etnxpData = ModelViewController.getCoinData("etnxp");
+			if(etnxpData != null){
+			    const etnxpBalance = ModelViewController.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
+			    $("#amount").val(etnxpBalance);
+			}
 		case 'etnxc-send':
-		    var coinData = ModelViewController.getCoinData("etnxc");
-		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "etnxc");
+		    var etnxcData = ModelViewController.getCoinData("etnxc");
+			if(etnxcData != null){
+			    const etnxcBalance = ModelViewController.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
+			    $("#amount").val(etnxcBalance);
+			}
 		case 'ltnx-send':
-		    var coinData = ModelViewController.getCoinData("ltnx");
-		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "ltnx");
+		    var ltnxData = ModelViewController.getCoinData("ltnx");
+			if(ltnxData != null){
+			    const ltnxBalance = ModelViewController.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
+			    $("#amount").val(ltnxBalance);
+			}
         	case 'gldx-send':
-		    var coinData = ModelViewController.getCoinData("gldx");
-		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "gldx");
+		    var gldxData = ModelViewController.getCoinData("gldx");
+			if(gldxData != null){
+			    const gldxBalance = ModelViewController.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
+			    $("#amount").val(gldxBalance);
+			}
         	case 'crfi-send':
-	            var coinData = ModelViewController.getCoinData("crfi");
-		    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, "crfi");
+		    var crfiData = ModelViewController.getCoinData("crfi");
+			if(crfiData != null){
+			    const crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
+			    $("#amount").val(crfiBalance);
+			}
 		default:
 		break;
 	    }
-	var balance = coinBalance;
-	var input = $('#amount');
-        input.val(balance)
-   console.log("sendAll: " + sendAll + " " + balance);
+	
+	
+   console.log("sendAll: " + sendAll + " " + coin_selected);
 });
 
 function checkMandatoryField(id){
