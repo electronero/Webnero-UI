@@ -19,50 +19,48 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	var coin_selected = $(".btn-selected").attr("id");
 	var coinsymbol = '';
 	    switch(coin_selected){
-		case 'etnx-send':
+		    case 'etnx-send':
+			   day = "Sunday";
 		    var etnxData = ModelViewController.getCoinData("etnx");
 			if(etnxData != null){
 			    const etnxBalance = ModelViewController.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
 			    $("#amount").val(etnxBalance);
-			}
-		break;
-		case 'etnxp-send':
+			} 
+			    break;
+		    case 'etnxp-send':
 		    var etnxpData = ModelViewController.getCoinData("etnxp");
 			if(etnxpData != null){
 			    const etnxpBalance = ModelViewController.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
 			    $("#amount").val(etnxpBalance);
 			}
-		break;
-		case 'etnxc-send':
+			    break;
+		    case 'etnxc-send':
 		    var etnxcData = ModelViewController.getCoinData("etnxc");
 			if(etnxcData != null){
 			    const etnxcBalance = ModelViewController.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
 			    $("#amount").val(etnxcBalance);
 			}
-		break;
-		case 'ltnx-send':
+			    break;
+		    case 'ltnx-send':
 		    var ltnxData = ModelViewController.getCoinData("ltnx");
 			if(ltnxData != null){
 			    const ltnxBalance = ModelViewController.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
 			    $("#amount").val(ltnxBalance);
 			}
-		break;
-        	case 'gldx-send':
+			    break;
+		    case 'gldx-send':
 		    var gldxData = ModelViewController.getCoinData("gldx");
 			if(gldxData != null){
 			    const gldxBalance = ModelViewController.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
 			    $("#amount").val(gldxBalance);
 			}
-		break;
-        	case 'crfi-send':
+			    break;
+		    case 'crfi-send':
 		    var crfiData = ModelViewController.getCoinData("crfi");
 			if(crfiData != null){
 			    const crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
 			    $("#amount").val(crfiBalance);
 			}
-		break;
-		default:
-		break;
 	    }
    console.log("sendAll: " + sendAll + " " + coin_selected);
 });
