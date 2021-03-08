@@ -20,21 +20,20 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	var coinsymbol = '';
 	    switch(coin_selected){
 		case 'etnx-send':
-		    coinsymbol = 'etnx';
+		    var coinData = ModelViewController.getCoinData("etnx");
 		case 'etnxp-send':
-		    coinsymbol = 'etnxp';
+		    var coinData = ModelViewController.getCoinData("etnxp");
 		case 'etnxc-send':
-		    coinsymbol = 'etnxc';
+		    var coinData = ModelViewController.getCoinData("etnxc");
 		case 'ltnx-send':
-		    coinsymbol = 'ltnx';
+		    var coinData = ModelViewController.getCoinData("ltnx");
         	case 'gldx-send':
-		    coinsymbol = 'gldx'; 
+		    var coinData = ModelViewController.getCoinData("gldx");
         	case 'crfi-send':
-		    coinsymbol = 'crfi'; 
-        default:
-            break;
+	            var coinData = ModelViewController.getCoinData("crfi");
+		default:
+		break;
 	    }
-    var coinData = ModelViewController.getCoinData(coinsymbol);
     var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, coinsymbol);
     	var balance = coinBalance;
 	var input = $('#amount');
