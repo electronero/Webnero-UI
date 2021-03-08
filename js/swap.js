@@ -11,10 +11,30 @@ $(document).on("click", "#send-modal", function(){
 var coin_checked = {
 	coin: null
 };
+var etnx = {
+	balance: null,
+	coin: 'etnx'
+};
 var etnx_checked = false;
+var etnxp = {
+	balance: null,
+	coin: 'etnxp'
+};
 var etnxp_checked = false;
+var ltnx = {
+	balance: null,
+	coin: 'ltnx'
+};
 var ltnx_checked = false;
+var gldx = {
+	balance: null,
+	coin: 'gldx'
+};
 var gldx_checked = false;
+var crfi = {
+	balance: null,
+	coin: 'crfi'
+};
 var crfi_checked = false;
 document.getElementById('etnx-send').addEventListener("click", function() {
 	console.log("etnx-send");
@@ -22,6 +42,7 @@ document.getElementById('etnx-send').addEventListener("click", function() {
 	console.log(etnxBalance);
 	etnx_checked = true;
 	coin_checked.coin = 'etnx';
+	etnx.balance = etnxBalance;
 	console.log(coin_checked);
 });
 
@@ -31,6 +52,7 @@ document.getElementById('etnxp-send').addEventListener("click", function() {
 	console.log(etnxpBalance);
 	etnxp_checked = true;
 	coin_checked.coin = 'etnxp';
+	etnxp.balance = etnxpBalance;
 	console.log(coin_checked);
 });
 
@@ -40,6 +62,7 @@ document.getElementById('ltnx-send').addEventListener("click", function() {
 	console.log(ltnxBalance);
 	ltnx_checked = true;
 	coin_checked.coin = 'ltnx';
+	ltnx.balance = ltnxBalance;
 	console.log(coin_checked);
 });
 
@@ -49,6 +72,7 @@ document.getElementById('gldx-send').addEventListener("click", function() {
 	console.log(gldxBalance);
 	gldx_checked = true;
 	coin_checked.coin = 'gldx';
+	gldx.balance = gldxBalance;
 	console.log(coin_checked);
 });
 
@@ -58,6 +82,7 @@ document.getElementById('crfi-send').addEventListener("click", function() {
 	console.log(crfiBalance);
 	crfi_checked = true;
 	coin_checked.coin = 'crfi';
+	crfi.balance = crfiBalance;
 	console.log(coin_checked);
 });
 document.getElementById('swap-all').addEventListener("click", function() {
@@ -67,19 +92,19 @@ document.getElementById('swap-all').addEventListener("click", function() {
 	} else {
 		sendAll = true;
 	}
-	if(coin_checked.coin === 'etnx' || etnx_checked === true){
+	if(coin_checked.coin === 'etnx'){
 		console.log("ETNX");
 	}
-	else if(coin_checked.coin === 'etnxp' || etnxp_checked === true){
-		console.log("ETNX");
+	else if(coin_checked.coin === 'etnxp'){
+		console.log("ETNXP");
 	}
-	else if(coin_checked.coin === 'ltnx' || ltnx_checked === true){
-		console.log("ETNX");
+	else if(coin_checked.coin === 'ltnx'){
+		console.log("LTNX");
 	}
-	else if(coin_checked.coin === 'gldx' || gldx_checked === true){
-		console.log("ETNX");
+	else if(coin_checked.coin === 'gldx'){
+		console.log("GLDX");
 	} 
-	else if(coin_checked.coin === 'crfi' || crfi_checked === true){
+	else if(coin_checked.coin === 'crfi'){
 		console.log("CRFI");
 	} else {
 		console.log("ERROR");
