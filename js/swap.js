@@ -11,6 +11,32 @@ $(document).on("click", "#send-modal", function(){
 
 document.getElementById('etnx-send').addEventListener("click", function() {
 	console.log("etnx-send");
+	var etnxBalance = $('etnx-unlocked-balance).text();
+	console.log(etnxBalance);
+});
+
+document.getElementById('etnxp-send').addEventListener("click", function() {
+	console.log("etnxp-send");
+	var etnxpBalance = $('etnxp-unlocked-balance).text();
+	console.log(etnxpBalance);
+});
+
+document.getElementById('ltnx-send').addEventListener("click", function() {
+	console.log("ltnx-send");
+	var ltnxBalance = $('ltnx-unlocked-balance).text();
+	console.log(ltnxBalance);
+});
+
+document.getElementById('gldx-send').addEventListener("click", function() {
+	console.log("gldx-send");
+	var gldxBalance = $('gldx-unlocked-balance).text();
+	console.log(gldxBalance);
+});
+
+document.getElementById('crfi-send').addEventListener("click", function() {
+	console.log("crfi-send");
+	var crfiBalance = $('crfi-unlocked-balance).text();
+	console.log(crfiBalance);
 });
 document.getElementById('swap-all').addEventListener("click", function() {
 	var sendAll = false;
