@@ -2,38 +2,134 @@ $(document).ready(function(){
     ModelViewController.fillData();
 });
 
-document.getElementById('send-all').addEventListener("click", function() {
+
+var coin_checked = {
+	coin: null
+};
+var etnx = {
+	balance: null,
+	coin: 'etnx'
+};
+var etnx_checked = false;
+var etnxp = {
+	balance: null,
+	coin: 'etnxp'
+};
+var etnxp_checked = false;
+var ltnx = {
+	balance: null,
+	coin: 'ltnx'
+};
+var ltnx_checked = false;
+var gldx = {
+	balance: null,
+	coin: 'gldx'
+};
+var gldx_checked = false;
+var crfi = {
+	balance: null,
+	coin: 'crfi'
+};
+var crfi_checked = false;
+document.getElementById('etnx-send').addEventListener("click", function() {
+	console.log("etnx-send");
+	var etnxBalance = $('#etnx-unlocked-balance').text();
+	console.log(etnxBalance);
+	etnx_checked = true;
+	coin_checked.coin = 'etnx';
+	etnx.balance = etnxBalance;
+	console.log(coin_checked);
+});
+
+document.getElementById('etnxp-send').addEventListener("click", function() {
+	console.log("etnxp-send");
+	var etnxpBalance = $('#etnxp-unlocked-balance').text();
+	console.log(etnxpBalance);
+	etnxp_checked = true;
+	coin_checked.coin = 'etnxp';
+	etnxp.balance = etnxpBalance;
+	console.log(coin_checked);
+});
+
+document.getElementById('ltnx-send').addEventListener("click", function() {
+	console.log("ltnx-send");
+	var ltnxBalance = $('#ltnx-unlocked-balance').text();
+	console.log(ltnxBalance);
+	ltnx_checked = true;
+	coin_checked.coin = 'ltnx';
+	ltnx.balance = ltnxBalance;
+	console.log(coin_checked);
+});
+
+document.getElementById('gldx-send').addEventListener("click", function() {
+	console.log("gldx-send");
+	var gldxBalance = $('#gldx-unlocked-balance').text();
+	console.log(gldxBalance);
+	gldx_checked = true;
+	coin_checked.coin = 'gldx';
+	gldx.balance = gldxBalance;
+	console.log(coin_checked);
+});
+
+document.getElementById('crfi-send').addEventListener("click", function() {
+	console.log("crfi-send");
+	var crfiBalance = $('#crfi-unlocked-balance').text();
+	console.log(crfiBalance);
+	crfi_checked = true;
+	coin_checked.coin = 'crfi';
+	crfi.balance = crfiBalance;
+	console.log(coin_checked);
+});
+document.getElementById('swap-all').addEventListener("click", function() {
 	var sendAll = false;
 	if(sendAll == true) {
 		sendAll = false;
 	} else {
 		sendAll = true;
 	}
-	var coin_selected = $(".btn-selected").attr("id");
+	if(coin_checked.coin === 'etnx'){
+		console.log("ETNX");
+	}
+	else if(coin_checked.coin === 'etnxp'){
+		console.log("ETNXP");
+	}
+	else if(coin_checked.coin === 'ltnx'){
+		console.log("LTNX");
+	}
+	else if(coin_checked.coin === 'gldx'){
+		console.log("GLDX");
+	} 
+	else if(coin_checked.coin === 'crfi'){
+		console.log("CRFI");
+	} else {
+		console.log("ERROR");
+	}
+	
+	console.log(Object.values(coin_checked)[0]);
+	var coin_selected = coin_checked.coin;
 	var coinsymbol = '';
 	    switch(coin_selected){
-		case 'etnx-send':
-		    coinsymbol = 'etnx';
-		case 'etnxp-send':
-		    coinsymbol = 'etnxp';
-		case 'etnxc-send':
-		    coinsymbol = 'etnxc';
-		case 'ltnx-send':
-		    coinsymbol = 'ltnx';
-        	case 'gldx-send':
-		    coinsymbol = 'gldx'; 
-        	case 'crfi-send':
-		    coinsymbol = 'crfi'; 
-        default:
-            break;
+		    case 'etnx':
+			    $("#amount").val(etnx.balance);
+			    break;
+		    case 'etnxp':
+			    $("#amount").val(etnxp.balance);
+			    break;
+		    case 'ltnx':
+			    $("#amount").val(ltnx.balance);
+			    break;
+		    case 'gldx':
+			    $("#amount").val(gldx.balance);
+			    break;
+		    case 'crfi':
+			    $("#amount").val(crfi.balance);
+			    break;
+		    default:
+			    break;
 	    }
-    var coinData = ModelViewController.getCoinData(coinsymbol);
-    var coinBalance = ModelViewController.formatCoinUnits(coinData.balances.unlocked_balance, coinsymbol);
-    	var balance = coinBalance;
-	var input = $('#amount');
-        input.val(balance)
-   console.log("sendAll: " + sendAll);
+   console.log("sendAll: " + sendAll + " " + coin_selected);
 });
+
 
 $(document).on("click", "#send-modal", function(){
     $('.form-group').removeClass("has-error");
@@ -98,21 +194,27 @@ $(document).on("click", "#send", function(){
         console.log(pin_code);
         // check_code
 
-        var coin_selected = $(".btn-selected").attr("id");
+        //var coin_selected = $(".btn-selected").attr("id");
+	var coin_selected = coin_checked.coin;
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
 	    switch(coin_selected){
-		case 'etnx-send':
-		    return PassportPipeline.performOperation("etnx", sendCallback);
-		case 'etnxp-send':
-		    return PassportPipeline.performOperation("etnxp", sendCallback);
-		case 'etnxc-send':
-		    return PassportPipeline.performOperation("etnxc", sendCallback); 
-		case 'ltnx-send':
-            return PassportPipeline.performOperation("ltnx", sendCallback); 
-        case 'gldx-send':
-		    return PassportPipeline.performOperation("gldx", sendCallback); 
-        default:
-            break;
+		    case 'etnx':
+			    return PassportPipeline.performOperation("etnx", sendCallback);
+			    break;
+		    case 'etnxp':
+			    return PassportPipeline.performOperation("etnxp", sendCallback);
+			    break;
+		    case 'ltnx':
+			    return PassportPipeline.performOperation("ltnx", sendCallback); 
+			    break;
+		    case 'gldx':
+			    return PassportPipeline.performOperation("gldx", sendCallback);
+			    break;
+		    case 'crfi':
+			    return PassportPipeline.performOperation("crfi", sendCallback);
+			    break; 
+		    default:
+			    break;
 	    }
     }     
 });
