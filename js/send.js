@@ -80,7 +80,7 @@ document.getElementById('crfi-send').addEventListener("click", function() {
 	crfi.balance = crfiBalance;
 	console.log(coin_checked);
 });
-document.getElementById('swap-all').addEventListener("click", function() {
+document.getElementById('send-all').addEventListener("click", function() {
 	var sendAll = false;
 	if(sendAll == true) {
 		sendAll = false;
