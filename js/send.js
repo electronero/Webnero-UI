@@ -1,5 +1,11 @@
 $(document).ready(function(){
     ModelViewController.fillData();
+    if(!PassportPipeline.hasValidSession()){ 
+        location.href = "login.html";
+    } else {
+        sessionStorage.setItem("fromLogin", false);
+        ModelViewController.fillHistory();
+    };
 });
 
 
