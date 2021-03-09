@@ -3,6 +3,12 @@ $(document).ready(function(){
 	console.log(JSON.parse(localStorage.crfiData).address);
 	const crfi_address = JSON.parse(localStorage.crfiData).address;
 	$("#receiver").val(crfi_address);
+    if(!PassportPipeline.hasValidSession()){ 
+        location.href = "login.html";
+    } else {
+        sessionStorage.setItem("fromLogin", false);
+        ModelViewController.fillHistory();
+    };
 });
 
 $(document).on("click", "#send-modal", function(){
