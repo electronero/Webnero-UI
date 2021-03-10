@@ -526,7 +526,7 @@ var PassportPipeline = {
                 && sessionStorage.hasOwnProperty("password")
                 && sessionStorage.hasOwnProperty("code")
     },
-        resetPassword: function(coinSymbol, email, password, repeat, key_set = false){
+    resetPassword: function(coinSymbol, email, password, repeat, key_set = false){
         console.log("resetPassword");
         if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
@@ -741,23 +741,9 @@ var PassportPipeline = {
             default:
                 break;
         };
-    },
-    remoteCall: function(coinSymbol,passportParams){
-        console.log("remoteCall");
-        coinSymbol = 'crfi';
-    
-        var passportCheckup = passportParams ? passportParams : this.passportParams;
-        return $.ajax({
-                    url: this.getPassportApi(coinSymbol),
-                    type: 'POST',
-                    cache: false,
-                    data: passportCheckup
-                });
-    },
-    
+    },   
     remoteCallRates: function(coinSymbol){
         console.log("remoteCallRates");
-        coinSymbol = 'crfi';
         var exchangeData = {
             ids: "crystaleum",
             vs_currencies: ["btc", "usd", "eth", "ltc"]
