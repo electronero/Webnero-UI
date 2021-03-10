@@ -160,16 +160,16 @@ var PassportPipeline = {
     exRatesApi_gldx: 'https://api.coingecko.com/api/v3/simple/price?ids=goldnero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
     
     setBlockchainInfo: function(coinSymbol, status, height, txcount, top_block_hash){
-        console.log("setBlockchainInfo");
-        sessionStorage.setItem("status", status);
-        sessionStorage.setItem("top_block_hash", top_block_hash);
-        sessionStorage.setItem("height", height);
-        sessionStorage.setItem("txcount", txcount);
-        this.passportParams.status = sessionStorage.getItem("status");
-        this.passportParams.top_block_hash = sessionStorage.getItem("top_block_hash");
-        this.passportParams.height = sessionStorage.getItem("height");
-        this.passportParams.txcount = sessionStorage.getItem("txcount");
-        console.log("height: " + this.passportParams.height + " status: " + this.passportParams.status + " top_block_hash: " + this.passportParams.top_block_hash + " txcount: " + this.passportParams.txcount);
+        console.log("setBlockchainInfo for " + coinSymbol);
+        sessionStorage.setItem("status"+"_"+coinSymbol, status);
+        sessionStorage.setItem("top_block_hash"+"_"+coinSymbol, top_block_hash);
+        sessionStorage.setItem("height"+"_"+coinSymbol, height);
+        sessionStorage.setItem("txcount"+"_"+coinSymbol, txcount);
+        this.passportParams.status = sessionStorage.getItem("status"+"_"+coinSymbol);
+        this.passportParams.top_block_hash = sessionStorage.getItem("top_block_hash"+"_"+coinSymbol);
+        this.passportParams.height = sessionStorage.getItem("height"+"_"+coinSymbol);
+        this.passportParams.txcount = sessionStorage.getItem("txcount"+"_"+coinSymbol);
+        console.log(coinSymbol+"_height: " + this.passportParams.height + " " + coinSymbol+"_status: " + this.passportParams.status + " " + coinSymbol+"_top_block_hash: " + this.passportParams.top_block_hash + " " + coinSymbol+"_txcount: " + this.passportParams.txcount);
     },
 
     checkDaemon: function(coinSymbol){
@@ -197,7 +197,7 @@ var PassportPipeline = {
                 const top_block_hash = daemonData.top_block_hash;
                 console.log(daemonData);
                 console.log("setBlockchainInfo init");
-                this.setBlockchainInfo("crfi", status, height, txcount, top_block_hash);
+                this.setBlockchainInfo(coinSymbol, status, height, txcount, top_block_hash);
                 if(status != "OK"){
                     $("#daemon-status").css("color", "FireBrick");
                 } else {
