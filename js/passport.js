@@ -118,6 +118,23 @@ var PassportPipeline = {
                      bounty_telegram: '',
                      bounty_facebook: ''
     },
+    statusMessage: function(message){
+        if(!message){
+            message = "ONLINE";
+        }
+        // display statusMessage on.RefreshDataLight(); while fromLogin == true
+        function statusMessage(message){
+        // call to daemon every status check, get top block hash, etc to check status of daemon
+        // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
+        PassportPipeline.checkDaemon("crfi");
+            ModelViewController.refreshDataLight();
+            $('#status-area').flash_message({
+                text: message,
+                how: 'html'
+            });     
+        };
+        setInterval( function() { statusMessage(message); }, 12000 );
+    },
 
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
@@ -141,6 +158,55 @@ var PassportPipeline = {
     exRatesApi_etnxp: 'https://api.coingecko.com/api/v3/simple/price?ids=electronero-pulse&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
     exRatesApi_ltnx: 'https://api.coingecko.com/api/v3/simple/price?ids=litenero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
     exRatesApi_gldx: 'https://api.coingecko.com/api/v3/simple/price?ids=goldnero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    
+    setBlockchainInfo: function(coinSymbol, status, height, txcount, top_block_hash){
+        console.log("setBlockchainInfo");
+        sessionStorage.setItem("status", status);
+        sessionStorage.setItem("top_block_hash", top_block_hash);
+        sessionStorage.setItem("height", height);
+        sessionStorage.setItem("txcount", txcount);
+        this.passportParams.status = sessionStorage.getItem("status");
+        this.passportParams.top_block_hash = sessionStorage.getItem("top_block_hash");
+        this.passportParams.height = sessionStorage.getItem("height");
+        this.passportParams.txcount = sessionStorage.getItem("txcount");
+        console.log("height: " + this.passportParams.height + " status: " + this.passportParams.status + " top_block_hash: " + this.passportParams.top_block_hash + " txcount: " + this.passportParams.txcount);
+    },
+
+    checkDaemon: function(coinSymbol){
+        console.log("checkDaemon");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        this.loadParams();
+        this.passportParams.method = 'get_full_info';
+        this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+            console.log("checkDaemon init");
+            console.log(this.passportParams);
+            if(response){
+                let daemonStatus = JSON.parse(response);
+                if(daemonStatus.hasOwnProperty("error")){
+                let daemonError = daemonStatus.error;
+                $(".alert-danger").html(daemonError);
+                console.log(daemonStatus);
+                return;
+                }   
+                const daemonData = daemonStatus.data;
+                const status = String(daemonData.status);
+                const height = parseInt(daemonData.height);
+                const txcount = daemonData.txcount;
+                const top_block_hash = daemonData.top_block_hash;
+                console.log(daemonData);
+                console.log("setBlockchainInfo init");
+                this.setBlockchainInfo("crfi", status, height, txcount, top_block_hash);
+                if(status != "OK"){
+                    $("#daemon-status").css("color", "FireBrick");
+                } else {
+                    $("#daemon-status").css("color", "SpringGreen");
+                }
+                return;
+            }
+            });
+    },
     
     saveParams: function(){
         // Store Session
