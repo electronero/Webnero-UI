@@ -7,6 +7,35 @@
         {% include "../templates/navigation.njk" %}
 
         <div id="page-wrapper">
+
+                {% block css %}
+                <!-- Custom styles -->
+		        <link rel="stylesheet" href="../css/table.css" />
+                {% endblock %}     
+        
+            <div class="row">
+                <div class="col-lg-4">
+                    {% import "../templates/macros/coin_enable.njk" as etnx %}
+                    {{ etnx.enable('etnx', 'Electronero') }}
+                </div>
+                <div class="col-lg-4">
+                    {% import "../templates/macros/coin_enable.njk" as etnxp %}
+                    {{ etnxp.enable('etnxp', 'Electronero Pulse') }}
+                </div>
+                <div class="col-lg-4">
+                    {% import "../templates/macros/coin_enable.njk" as ltnx %}
+                    {{ ltnx.enable('ltnx', 'Litenero') }}
+                </div>
+                <div class="col-lg-4">
+                    {% import "../templates/macros/coin_enable.njk" as gldx %}
+                    {{ gldx.enable('gldx', 'Goldnero') }}
+                </div>
+                <div class="col-lg-4">
+                    {% import "../templates/macros/coin_enable.njk" as crfi %}
+                    {{ crfi.enable('crfi', 'Crystaleum') }}
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3">
                     <div class="alert alert-danger" style="display: none">
@@ -15,53 +44,109 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as etnx %}
-                    {{ etnx.enable('etnx', 'Electronero') }}
-                </div>
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as etnxp %}
-                    {{ etnxp.enable('etnxp', 'Electronero Pulse') }}
-                </div>
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as ltnx %}
-                    {{ ltnx.enable('ltnx', 'Litenero') }}
-                </div>
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as gldx %}
-                    {{ gldx.enable('gldx', 'Goldnero') }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="panel panel-etnx panel-settings">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
-                            2 Factor Authentication
+                            Add or update a Bounty Reward Hash to pair your account and Activate Crystaleum CRFI Bounty.  
                         </div>
                         <div class="panel-body">
-                            <i class="fa fa-lock" style="font-size: 70px; vertical-align: middle"></i>
-                            <label class="switch">
-                                <input coin="2fa" type="checkbox"
-                                    msg-on="Scan this QR or Enter this code on Google Authenticator app to enable 2fa on your device" 
-                                    msg-off="Are you sure you want to disable 2FA on yours wallets ?" >
-                                <span class="slider round"></span>
-                            </label>
+                            <div class="row">
+                            <input type='hidden' name='key' id='pass_key'>
+                                <div class="form-group col-lg-4">
+                                    <input id="elderid" class="form-control form-settings" placeholder="Enter Bounty Hash Code" name="elderid" autofocus>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <input id="repeat-elderid" class="form-control form-settings" placeholder="Confirm Bounty Hash Code" name=""repeat-elderid" value="">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <button id="add-elder" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
-                    <div class="panel panel-etnx panel-settings">
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">My Bounty Reward Hash</a>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                           <div class="row" style="color: #018ccf;">
+                                <div class="col-lg-12">
+                                    <table>
+                                      <tr>
+                                        <th>MY CRFI Bounty Id</th>
+                                        <th>MY CRFI Address</th>
+                                      </tr>
+                                      <tr>
+                                        <td><span id="elder_bounty_id"></span></td>
+                                        <td><span id="elder_address_span"></span></td>
+                                      </tr>
+                                      </tr>
+                                    </table>
+                                </div>
+                            </div> 
+                        </div>
+                     </div>
+                 </div>            
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">My Invites List</a>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                           <div class="row" style="color: #018ccf;">
+                                <div class="col-lg-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover" id="bounty-history">
+                                    <thead>
+                                        <tr>
+                                            <th>Bounty ID</th>
+                                            <th>CRFI Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div> 
+                        </div>
+                     </div>
+                 </div>            
+            </div>
+            
+             <div class="row">
+                <div class="col-lg-12">
+                    {% import "../templates/macros/coin_enable.njk" as crfi %}
+                    {{ crfi.enable('crfi', 'Crystaleum') }}
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
                             Password Reset
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                            <input type='hidden' name='key' id='pass_key'>
                                 <div class="form-group col-lg-4">
-                                    <input id="newpwd" class="form-control form-settings" placeholder="New Password" name="newpwd" type="password" autofocus>
+                                    <input id="pass" class="form-control form-settings" placeholder="New Password" name="newpwd" type="password" autofocus>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <input id="confirmpwd" class="form-control form-settings" placeholder="Confirm New Password" name="confirmpwd" type="password" value="">
+                                    <input id="repeat" class="form-control form-settings" placeholder="Confirm New Password" name="confirmpwd" type="password" value="">
                                 </div>
                                 <div class="form-group col-lg-4">
                                     <button id="resetpwd" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
@@ -72,8 +157,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="panel panel-etnx panel-settings">
+                
+                <div class="col-lg-6">
+                    <div class="panel panel-crfi panel-settings">
+                        <div class="panel-heading">
+                            2 Factor Authentication
+                        </div>
+                        <div class="panel-body">
+                            <i class="fa fa-lock" style="font-size: 70px; vertical-align: middle"></i>
+                            <label class="switch">
+                            <input type='hidden' name='key' id="2fa_key">
+                                <input coin="2fa" type="checkbox"
+                                    msg-on="Scan this QR or Enter this code on Google Authenticator app to enable 2fa on your device" 
+                                    msg-off="coin you want to disable 2FA on yours wallets ?" >
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
                             Autrefresh Interval
                         </div>
@@ -93,22 +196,24 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
-                <div class="col-lg-9">
-                    <div class="panel panel-etnx panel-settings">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
                             Code Reset
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                            <input type='hidden' name='key' id="code_key">
                                 <div class="form-group col-lg-4">
-                                    <input id="newcode" class="form-control form-settings" placeholder="New Code" name="newcode" type="password" autofocus>
+                                    <input id="pin" class="form-control form-settings" placeholder="New 5-Digit Security Code" name="pin" type="password" autofocus>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <input id="confirmcode" class="form-control form-settings" placeholder="Confirm Code" name="confirmcode" type="password" value="">
+                                    <input id="confirmpin" class="form-control form-settings" placeholder="Confirm Code" name="confirmpin" type="password" value="">
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <button id="resetcode" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
+                                    <button id="reset-code" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
                                 </div>
                             </div>
                         </div>
@@ -118,49 +223,67 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-etnx panel-settings">
+                    <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
                             Beneficiaries
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                            <input type='hidden' name='key' id="benef_key">
                                 <div class="form-group col-lg-4">
-                                    <input id="namebenef" class="form-control form-settings" placeholder="Name" name="namebenef" type="text" autofocus>
+                                    <input id="beneficiary-name" class="form-control form-settings" placeholder="Name" name="beneficiary-name" type="text" required>
                                 </div>
                                 <div class="form-group col-lg-8">
-                                    <input id="emailbenef" class="form-control form-settings" placeholder="Email" name="emailbenef" type="text" autofocus>
+                                    <input id="beneficiary-email" class="form-control form-settings" placeholder="Email" name="beneficiary-email" type="text" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-8">
-                                    <input id="beneneficiary" class="form-control form-settings" placeholder="Address" name="beneneficiary" type="text" autofocus>
+                                    <input id="beneficiary-address" class="form-control form-settings" placeholder="Confirm CRFI Address" name="beneficiary-address" type="text" required>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <button id="add" class="btn btn-lg btn-login btn-block btn-primary"><i class="fa fa-plus-circle"></i> Beneneficiary</button>
-                                </div>
-                            </div>
-                            <div class="panel panel-etnx">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">List</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                                    <div class="panel-body">
-                                        <ul class="list-unstyled">
-                                            <li>Interchained - f4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
-                                            <li>Crepuscolo - f4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
-                                            <li>Triskell - f4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
-                                        </ul>
-                                    </div>
+                                    <button id="add-beneficiary" class="btn btn-lg btn-login btn-block btn-primary"><i class="fa fa-plus-circle"></i> Beneneficiary</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                 </div>            
             </div>
-        </div>
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">List</a>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                           <div class="row" style="color: #018ccf;">
+                                <div class="col-lg-12">
+                                    <table>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Email</th>
+                                      </tr>
+                                      <tr>
+                                        <td><span id="name_span"></span></td>
+                                        <td><span id="address_span"></span></td>
+                                        <td><span id="email_span"></span></td>
+                                      </tr>
+                                      </tr>
+                                    </table>
+                                </div>
+                            </div> 
+                        </div>
+                     </div>
+                 </div>            
+            </div>
+
+
+        </div>
+    </div>
         {% include "../templates/modals/spinner.njk" %}
 
         {% include "../templates/modals/confirm.njk" %}
@@ -168,5 +291,9 @@
 {% endblock %}
 
 {% block scripts %} 
-    <script type="text/javascript" src="../dist/js/settings.js"></script>
+	<script type="text/javascript" src="../dist/js/kyc.js?ver=101"></script>
+    <script type="text/javascript" src="../plugins/metisMenu/metisMenu.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <script type="text/javascript" src="../dist/js/reset.js?v=1999"></script>
+    <script type="text/javascript" src="../dist/js/settings.js?v=2003"></script>
 {% endblock %}
