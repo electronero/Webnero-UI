@@ -10,11 +10,7 @@ $(document).ready(function(){
         ModelViewController.fillData();
         sessionStorage.setItem("fromLogin", false);
         setInterval(ModelViewController.refreshData, 150000);
-        // set a key to authenticate crystalID
-//         PassportPipeline.setUUkey('etnx');  
-//         PassportPipeline.setUUkey('etnxp');  
-//         PassportPipeline.setUUkey('ltnx');  
-//         PassportPipeline.setUUkey('gldx');  
+        // set a key to authenticate crystalID 
         PassportPipeline.setUUkey('crfi');  
     } else {
         ModelViewController.fillData();
