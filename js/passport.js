@@ -312,13 +312,13 @@ var PassportPipeline = {
         };
     var crfiData = ModelViewController.getCoinData("crfi"); 
     let bounty_address = crfiData.address;
-    document.getElementById("elder_address_span").innerHTML = bounty_address;
+    //document.getElementById("elder_address_span").innerHTML = bounty_address;
         sessionStorage.setItem("bounty_id", bounty_id)
-    sessionStorage.setItem("bounty_address", bounty_address);
+        //sessionStorage.setItem("bounty_address", bounty_address);
         this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
-        this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
+        //this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
         console.log("setBountyId to: " + this.passportParams.bounty_id);
-        console.log("bounty_address to: " + this.passportParams.bounty_address);
+        //console.log("bounty_address to: " + this.passportParams.bounty_address);
     },
     storeElderHash: function(coinSymbol, elder_hash){ 
         console.log("storeElderHash");
@@ -333,14 +333,14 @@ var PassportPipeline = {
     },
     hasBountyId: function(coinSymbol){
         console.log("hasBountyId");
-    if(!coinSymbol){
+        if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
         return sessionStorage.getItem("bounty_id");
     },
     hasElderBountyId: function(coinSymbol){
         console.log("hasBountyId");
-    if(!coinSymbol){
+        if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
         return sessionStorage.getItem("bounty_elderid");
