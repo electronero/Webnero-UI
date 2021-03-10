@@ -135,7 +135,13 @@ var PassportPipeline = {
     ltnxExpl: 'blockexplorer.litenero.org',
     gldxExpl: 'blockexplorer.goldnero.org',
     crfiExpl: 'oracle.crystaleum.org',
-
+    
+    exRatesApi: 'https://api.coingecko.com/api/v3/simple/price?ids=crystaleum&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApi_etnx: 'https://api.coingecko.com/api/v3/simple/price?ids=electronero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApi_etnxp: 'https://api.coingecko.com/api/v3/simple/price?ids=electronero-pulse&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApi_ltnx: 'https://api.coingecko.com/api/v3/simple/price?ids=litenero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApi_gldx: 'https://api.coingecko.com/api/v3/simple/price?ids=goldnero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    
     saveParams: function(){
         // Store Session
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
@@ -454,6 +460,87 @@ var PassportPipeline = {
                 && sessionStorage.hasOwnProperty("password")
                 && sessionStorage.hasOwnProperty("code")
     },
+        resetPassword: function(coinSymbol, email, password, repeat, key_set = false){
+        console.log("resetPassword");
+        if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
+    };
+    this.passportParams.method = 'reset_password';
+        if(key_set == false){
+            this.passportParams.email = email;
+        console.log(this.passportParams.email);
+        }
+        if(key_set == true && password != null){
+            if(password != repeat){
+                resetFail();
+                return;
+               }
+            this.loadHash();
+            this.passportParams.password = password;
+            this.passportParams.method = 'reset_password_settings';
+        }
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("reset init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportReset = JSON.parse(response);
+                    if(passportReset.hasOwnProperty("error")){
+                        let resetError = passportReset.error;
+                        $(".alert-danger").html(resetError);
+                        console.log(passportReset);
+                        resetFail();
+                        return;
+                    }   
+                        this.saveParams();
+                        console.log(passportReset);
+                        resetSuccess();
+                        return;
+                }
+            });
+    },
+    
+    resetCode: function(coinSymbol, email, pin, repeat, key_set){
+        console.log("resetCode");
+        if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
+    };
+    this.loadParams();
+    this.passportParams.method = 'reset_password';
+        if(key_set == false){
+            this.passportParams.email = email;
+        }
+        if(key_set == true && pin != null){
+            if(pin != repeat){
+                resetFail();
+                return;
+               }
+            this.loadHash();
+            this.passportParams.code = pin;
+            this.passportParams.method = 'add_code';
+        }
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("reset code init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportResetCode = JSON.parse(response);
+                    if(passportResetCode.hasOwnProperty("error")){
+                        let resetError = passportResetCode.error;
+                        $(".alert-danger").html(resetError);
+                        console.log(passportResetCode);
+                        resetFail();
+                        return;
+                    }   
+                        var secure_code = PassportPipeline.myCipher(this.passportParams.code);
+                        this.passportParams.code = passportResetCode.data;
+                        this.setCode(secure_code);
+                        this.saveParams();
+                        console.log(passportResetCode);
+                        resetSuccess();
+                        return;
+                }
+            });
+    },
+    
     loadParams: function(){
         // Read only persistent data needed
         this.passportParams.username = this.myDecipher(sessionStorage.username);
@@ -468,6 +555,34 @@ var PassportPipeline = {
                     data: this.passportParams
                 });
     },   
+    
+    saveRates: function(usdt, btc, eth, ltc, crfi, coin){ 
+        console.log("saveRates");
+        if (coin != null && coin != undefined){
+            console.log("coin not null, using defined coin");
+        }
+        else {
+            coin = "crfi";
+        }
+        // Store rates in session 
+        sessionStorage.setItem("crfi", crfi);
+        sessionStorage.setItem("usdt", usdt);
+        sessionStorage.setItem("btc", btc);
+        sessionStorage.setItem("eth", eth);
+        sessionStorage.setItem("ltc", ltc);
+        // Confirm state of rates
+        this.passportParams.usdt_value = sessionStorage.getItem("usdt");
+        this.passportParams.btc_value = sessionStorage.getItem("btc");
+        this.passportParams.eth_value = sessionStorage.getItem("eth");
+        this.passportParams.ltc_value = sessionStorage.getItem("ltc");
+        // Log it out to the console
+        console.log(this.passportParams.crfi_value)
+        console.log(this.passportParams.usdt_value)
+        console.log(this.passportParams.btc_value)
+        console.log(this.passportParams.eth_value)
+        console.log(this.passportParams.ltc_value)
+    },
+
     setUUkey: function(coinSymbol){
         console.log("setUUkey");
         if(!coinSymbol){
@@ -530,6 +645,63 @@ var PassportPipeline = {
                         return;
                 }
             });
+    },   
+    loadHash: function(){
+        console.log("loadHash");
+        // Read only persistent data needed
+        this.passportParams.lost_password = this.myDecipher(sessionStorage.key_hash);
+    },
+    getRatesApi: function(coinSymbol){
+        console.log("getRatesApi");
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
+        switch(coinSymbol){
+            case 'etnx':
+                return this.exRatesApi_etnx;
+                break;
+            case 'etnxp':
+                return this.exRatesApi_etnxp;
+                break;
+            case 'ltnx':
+                return this.exRatesApi_ltnx;
+                break;
+            case 'gldx':
+                return this.exRatesApi_gldx;
+                break;
+            case 'crfi':
+                return this.exRatesApi;
+                break;
+            default:
+                break;
+        };
+    },
+    remoteCall: function(coinSymbol,passportParams){
+        console.log("remoteCall");
+        coinSymbol = 'crfi';
+    
+        var passportCheckup = passportParams ? passportParams : this.passportParams;
+        return $.ajax({
+                    url: this.getPassportApi(coinSymbol),
+                    type: 'POST',
+                    cache: false,
+                    data: passportCheckup
+                });
+    },
+    
+    remoteCallRates: function(coinSymbol){
+        console.log("remoteCallRates");
+        coinSymbol = 'crfi';
+        var exchangeData = {
+            ids: "crystaleum",
+            vs_currencies: ["btc", "usd", "eth", "ltc"]
+        };
+        return $.ajax({
+                    url: this.getRatesApi(coinSymbol),
+                    type: 'GET',
+                    cache: false
+                    // data: exchangeData
+                });
     },
     simulateRemoteCall: function(coinSymbol){
          return Passport.simulate(this.passportParams);
