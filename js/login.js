@@ -29,7 +29,9 @@ $(document).on("click", "#pin-code", function(){
         };
         var count = 0;
         for(count>0; count < coins.length; count++){
-            PassportPipeline.performOperation(coins[count], ModelViewController.initCoin, passport_local)   
+            console.log("count before: " + count);
+            PassportPipeline.performOperation(coins[count], ModelViewController.initCoin, passport_local)  
+            console.log("count after: " + count);
         };
     }
 });
