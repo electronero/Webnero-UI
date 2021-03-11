@@ -31,7 +31,7 @@ $(document).on("click", "#pin-code", function(){
         for(count>0; count < coins.length; count++){
             console.log("count before: " + count);
             PassportPipeline.performOperation(coins[count], ModelViewController.initCoin, passport_local)
-            if(count === 4){
+            if(count === 100){
                 PassportPipeline.startCryptoEngine("poll", passport_local);
                }
             console.log("count after: " + count);
