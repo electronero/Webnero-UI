@@ -806,7 +806,7 @@ var PassportPipeline = {
         this.setMethod('login');
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
         this.passportParams.uid = null;
-        let passport_local = {
+        passport_local = {
             api: this.passportParams.coinAPIurl,
             uid: this.passportParams.uid,
             email: $("#email").val(),
