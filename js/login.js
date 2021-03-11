@@ -20,11 +20,11 @@ $(document).on("click", "#pin-code", function(){
         ModelViewController.returnState();
         let coins = ModelViewController.coins.coin; 
         let passport_local = {
-            api: this.passportParams.coinAPIurl,
-            uid: this.passportParams.uid,
+            api: PassportPipeline.passportParams.coinAPIurl ? PassportPipeline.passportParams.coinAPIurl : null,
+            uid: PassportPipeline.passportParams.uid ? PassportPipeline.passportParams.uid : null,
             email: $("#email").val(),
             password: $("#password").val(),
-            pin: pin_code,
+            pin: pin_code ? pin_code : null,
             method: 'login'
         };
         var count = 0;
