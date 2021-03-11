@@ -197,7 +197,7 @@ var PassportPipeline = {
                 const daemonData = daemonStatus.data;
                 const status = String(daemonData.status);
                 const height = parseInt(daemonData.height);
-                const txcount = daemonData.txcount;
+                const txcount = daemonData.txcount ? daemonData.txcount : 'N/A';
                 const top_block_hash = daemonData.top_block_hash;
                 console.log(daemonData);
                 console.log("setBlockchainInfo init");
