@@ -235,7 +235,7 @@ var ModelViewController = {
         var tbody = $("#transaction-history").find('tbody');
         var count = 0;
         for(count>0; count < items.length; count++){
-            var item = items[items];
+            var item = items[count];
             tbody.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
