@@ -296,15 +296,30 @@ var ModelViewController = {
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
         let coins = ModelViewController.coins.coin; 
+        let passport_local = {
+            api: this.passportParams.coinAPIurl,
+            uid: this.passportParams.uid,
+            email: $("#email").val(),
+            password: $("#password").val(),
+            pin: pin_code,
+            method: 'login'
+        };
         for (var i=0;i<coins.length;i++) {
-                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin)   
+                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin, passport_local)   
         };
     },
         refreshDataLight: function(){
         PassportPipeline.loadCode();
         let coins = ModelViewController.coins.coin; 
-        for (var i=0;i<coins.length;i++) {
-                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin)   
+        let passport_local = {
+            api: this.passportParams.coinAPIurl,
+            uid: this.passportParams.uid,
+            email: $("#email").val(),
+            password: $("#password").val(),
+            pin: pin_code,
+            method: 'login'
+        }; (var i=0;i<coins.length;i++) {
+                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin, passport_local)   
         };
     }
 };
