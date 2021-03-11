@@ -126,6 +126,10 @@ var PassportPipeline = {
         function statusMessage(message){
         // call to daemon every status check, get top block hash, etc to check status of daemon
         // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
+        PassportPipeline.checkDaemon("etnx");
+        PassportPipeline.checkDaemon("etnxp");
+        PassportPipeline.checkDaemon("ltnx");
+        PassportPipeline.checkDaemon("gldx");
         PassportPipeline.checkDaemon("crfi");
             //ModelViewController.refreshDataLight();
             $('#status-area').flash_message({
