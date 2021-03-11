@@ -214,8 +214,10 @@ var PassportPipeline = {
     
     saveParams: function(){
         // Store Session
-        sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
-        sessionStorage.setItem("password", this.myCipher(this.passportParams.password)); 
+//         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
+//         sessionStorage.setItem("password", this.myCipher(this.passportParams.password)); 
+        sessionStorage.setItem("username", this.passportParams.username);
+        sessionStorage.setItem("password", this.passportParams.password); 
         // Then cipher any sensitive data
         this.passportParams.username = sessionStorage.getItem("username");
         this.passportParams.email = sessionStorage.getItem("username");
@@ -600,7 +602,7 @@ var PassportPipeline = {
                         resetFail();
                         return;
                     }   
-                        var secure_code = PassportPipeline.myCipher(this.passportParams.code);
+                        var secure_code = PassportPipeline.this.passportParams.code;
                         this.passportParams.code = passportResetCode.data;
                         this.setCode(secure_code);
                         this.saveParams();
@@ -613,9 +615,12 @@ var PassportPipeline = {
     
     loadParams: function(){
         // Read only persistent data needed
-        this.passportParams.username = this.myDecipher(sessionStorage.username);
-        this.passportParams.email = this.myDecipher(sessionStorage.username);
-        this.passportParams.password = this.myDecipher(sessionStorage.password);
+//         this.passportParams.username = this.myDecipher(sessionStorage.username);
+//         this.passportParams.email = this.myDecipher(sessionStorage.username);
+//         this.passportParams.password = this.myDecipher(sessionStorage.password);
+        this.passportParams.username = sessionStorage.username;
+        this.passportParams.email = sessionStorage.username;
+        this.passportParams.password = sessionStorage.password;
     },
     remoteCall: function(coinSymbol){
         return $.ajax({
@@ -719,7 +724,7 @@ var PassportPipeline = {
     loadHash: function(){
         console.log("loadHash");
         // Read only persistent data needed
-        this.passportParams.lost_password = this.myDecipher(sessionStorage.key_hash);
+        this.passportParams.lost_password = sessionStorage.key_hash;
     },
     getRatesApi: function(coinSymbol){
         console.log("getRatesApi");
@@ -764,9 +769,12 @@ var PassportPipeline = {
      },
     setCredentials: function(email, password, save){
         // maybe cipher the data, but it's done elsewhere
-        this.passportParams.username = this.myDecipher(email);
-        this.passportParams.email = this.myDecipher(email);
-        this.passportParams.password = this.myDecipher(password);
+//         this.passportParams.username = this.myDecipher(email);
+//         this.passportParams.email = this.myDecipher(email);
+//         this.passportParams.password = this.myDecipher(password);
+        this.passportParams.username = email;
+        this.passportParams.email = email;
+        this.passportParams.password = password;
         if(save)
         {
             return this.saveParams();
@@ -781,13 +789,15 @@ var PassportPipeline = {
         return sessionStorage.setItem("code", code);
     },
     loadCode: function(){
-        return this.passportParams.code = this.myDecipher(sessionStorage.code);
+//         return this.passportParams.code = this.myDecipher(sessionStorage.code);
+        return this.passportParams.code = sessionStorage.code;
     },
     setCoinUUID: function(coinSymbol, passportLogin){
-        return sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
+        return sessionStorage.setItem(coinSymbol+"_uuid", passportLogin.data.uid);
     },
     getCoinUUID: function(coinSymbol){
-        return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+//         return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+        return sessionStorage.getItem(coinSymbol+"_uuid");
     },
     performOperation: function(coinSymbol, operationCallback){
         console.log("performOperation");
