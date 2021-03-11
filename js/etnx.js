@@ -304,11 +304,12 @@ var ModelViewController = {
             pin: pin_code,
             method: 'login'
         };
-        for (var i=0;i<coins.length;i++) {
+            var count = 0;
+            for(count>0; count < coins.length; count++){
                 PassportPipeline.performOperation(coins[i], ModelViewController.initCoin, passport_local)   
         };
     },
-        refreshDataLight: function(){
+    refreshDataLight: function(){
         PassportPipeline.loadCode();
         let coins = ModelViewController.coins.coin; 
         let passport_local = {
@@ -318,7 +319,9 @@ var ModelViewController = {
             password: $("#password").val(),
             pin: pin_code,
             method: 'login'
-        }; (var i=0;i<coins.length;i++) {
+        }; 
+            var count = 0;
+            for(count>0; count < coins.length; count++){
                 PassportPipeline.performOperation(coins[i], ModelViewController.initCoin, passport_local)   
         };
     }
