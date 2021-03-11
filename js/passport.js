@@ -807,12 +807,11 @@ var PassportPipeline = {
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
         this.passportParams.uid = null;
         passport_local = {
-            api: this.passportParams.coinAPIurl,
-            uid: this.passportParams.uid,
-            email: $("#email").val(),
-            password: $("#password").val(),
-            pin: pin_code,
-            method: 'login'
+            api: this.passportParams.coinAPIurl ? this.passportParams.coinAPIurl : null,
+            uid: this.passportParams.uid ? this.passportParams.uid : null,
+            email: this.passportParams.email ? this.passportParams.email : null,
+            password: this.passportParams.password ? this.passportParams.password : null,
+            method: this.passportParams.method ? this.passportParams.method : null
         };
         console.log("1");
         console.log(this.passportParams);
