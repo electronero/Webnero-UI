@@ -19,8 +19,17 @@ $(document).on("click", "#pin-code", function(){
         sessionStorage.setItem("fromLogin", true);
         ModelViewController.returnState();
         let coins = ModelViewController.coins.coin; 
-        for (var i=0;i<coins.length;i++) {
-                PassportPipeline.performOperation(coins[i], ModelViewController.initCoin)   
+        let passport_local = {
+            api: this.passportParams.coinAPIurl,
+            uid: this.passportParams.uid,
+            email: $("#email").val(),
+            password: $("#password").val(),
+            pin: pin_code,
+            method: 'login'
+        };
+        var count = 0;
+        for(count>0; count < coins.length; count++){
+            PassportPipeline.performOperation(coins[count], ModelViewController.initCoin, passport_local)   
         };
     }
 });
