@@ -160,9 +160,12 @@ function sendCallback(coinSymbol){
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
    
-    const _uuid = PassportPipeline.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
-    const _email = PassportPipeline.myDecipher(sessionStorage.getItem("username"));
-    const _password = PassportPipeline.myDecipher(sessionStorage.getItem("password"));
+//     const _uuid = PassportPipeline.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+//     const _email = PassportPipeline.myDecipher(sessionStorage.getItem("username"));
+//     const _password = PassportPipeline.myDecipher(sessionStorage.getItem("password"));
+	const _uuid = sessionStorage.getItem(coinSymbol+"_uuid");
+    	const _email = sessionStorage.getItem("username");
+    	const _password = sessionStorage.getItem("password");
 	if(_uuid){
         // logs
         console.log(_uuid);
@@ -196,13 +199,13 @@ $(document).on("click", "#send", function(){
         $("#spinner-modal").modal('show');
         $("#send-code-modal").modal('hide');
 
-        sessionStorage.setItem("code", PassportPipeline.myCipher(pin_code));
+        sessionStorage.setItem("code", pin_code);
         console.log(pin_code);
         // check_code
 
         //var coin_selected = $(".btn-selected").attr("id");
 	var coin_selected = coin_checked.coin;
-        PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+        PassportPipeline.setCode(pin_code);
 	    switch(coin_selected){
 		    case 'etnx':
 			    return PassportPipeline.performOperation("etnx", sendCallback);
