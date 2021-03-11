@@ -4,7 +4,7 @@ $(function() {
 
 window.onload = function() {
   ModelViewController.isLogin = false;
-  PassportPipeline.statusMessage("Folio Updated!");
+  setInterval(PassportPipeline.statusMessage("Folio Updated!"), 300000);
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else {
