@@ -297,12 +297,11 @@ var ModelViewController = {
         PassportPipeline.loadCode();
         let coins = ModelViewController.coins.coin; 
         let passport_local = {
-            api: this.passportParams.coinAPIurl,
-            uid: this.passportParams.uid,
-            email: $("#email").val(),
-            password: $("#password").val(),
-            pin: pin_code,
-            method: 'login'
+            api: PassportPipeline.passportParams.coinAPIurl ? PassportPipeline.passportParams.coinAPIurl : null,
+            uid: PassportPipeline.passportParams.uid ? PassportPipeline.passportParams.uid : null,
+            email: PassportPipeline.passportParams.email ? PassportPipeline.passportParams.email : null,
+            password: PassportPipeline.passportParams.password ? PassportPipeline.passportParams.password : null,
+            method: PassportPipeline.passportParams.method ? PassportPipeline.passportParams.method : null
         };
             var count = 0;
             for(count>0; count < coins.length; count++){
@@ -313,12 +312,11 @@ var ModelViewController = {
         PassportPipeline.loadCode();
         let coins = ModelViewController.coins.coin; 
         let passport_local = {
-            api: this.passportParams.coinAPIurl,
-            uid: this.passportParams.uid,
-            email: $("#email").val(),
-            password: $("#password").val(),
-            pin: pin_code,
-            method: 'login'
+            api: PassportPipeline.passportParams.coinAPIurl ? PassportPipeline.passportParams.coinAPIurl : null,
+            uid: PassportPipeline.passportParams.uid ? PassportPipeline.passportParams.uid : null,
+            email: PassportPipeline.passportParams.email ? PassportPipeline.passportParams.email : null,
+            password: PassportPipeline.passportParams.password ? PassportPipeline.passportParams.password : null,
+            method: PassportPipeline.passportParams.method ? PassportPipeline.passportParams.method : null
         }; 
             var count = 0;
             for(count>0; count < coins.length; count++){
