@@ -127,7 +127,7 @@ var PassportPipeline = {
         // call to daemon every status check, get top block hash, etc to check status of daemon
         // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
         PassportPipeline.checkDaemon("crfi");
-            ModelViewController.refreshDataLight();
+            //ModelViewController.refreshDataLight();
             $('#status-area').flash_message({
                 text: message,
                 how: 'html'
@@ -803,7 +803,6 @@ var PassportPipeline = {
                     loginFail();
                     return;
                 }
-
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 console.log("UUID log")
