@@ -331,10 +331,11 @@ $(document).on("init.done", function(e){
     console.log(ModelViewController.initLevel)
     if(ModelViewController.initLevel >= 5){
         $("#spinner-modal").modal('hide');
-        if(location.pathname.indexOf("login") > -1)
+        if(location.pathname.indexOf("login") > -1) {
             location.href = location.href.replace("login", "index");
-        else
+        } else {
             ModelViewController.fillData();
+        }
     }
 });
 
