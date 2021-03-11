@@ -799,19 +799,21 @@ var PassportPipeline = {
 //         return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
         return sessionStorage.getItem(coinSymbol+"_uuid");
     },
-    performOperation: function(coinSymbol, operationCallback, passport = null){
+    performOperation: function(coinSymbol, operationCallback, passport_local = null){
         console.log("performOperation");
         this.loadParams();        
         this.passportParams.method = 'login';
         this.setMethod('login');
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
         this.passportParams.uid = null;
-        passport = {
+        let passport_local = {
             api: this.passportParams.coinAPIurl,
             uid: this.passportParams.uid,
-            method: 'login',
-            
-        }
+            email: $("#email").val(),
+            password: $("#password").val(),
+            pin: pin_code,
+            method: 'login'
+        };
         console.log("1");
         console.log(this.passportParams);
         this.remoteCall(coinSymbol,this.passportParams).then((response) => {
