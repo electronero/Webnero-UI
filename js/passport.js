@@ -7,6 +7,11 @@ var PassportPipeline = {
                      password: '',
                      code: '',
                      uid: '',
+                     uid_etnx: '',
+                     uid_etnxp: '',
+                     uid_ltnx: '',
+                     uid_gldx: '',
+                     uid_crfi: '',
                      unlocked_balance: 0, 
                      balance: 0,
                      locked_balance: 0,
@@ -258,7 +263,7 @@ var PassportPipeline = {
                     }   
                         const aindex = parseFloat(passportGetAindex.data);
                         this.passportParams.aindex = aindex;
-                        this.setWalletAindex("crfi", aindex);
+                        this.setWalletAindex(coinSymbol, aindex);
                         console.log(passportGetAindex);
                         console.log(passportGetAindex.data);
                         return;
