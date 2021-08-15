@@ -1,8 +1,8 @@
 # [Webnero UI]
 
 This is the User Interface for Webnero. 
-Webnero is the Web Wallet for Electronero Network coins. 
-Support for ETNX, ETNXP, LTNX, GLDX, and CRFI out-of-the-box. 
+Webnero is the Web Wallet for Electronero Network coins/tokens. 
+Support for ETNX, ETNXP, LTNX, GLDX, CRFI and all xASSETS out-of-the-box. 
 
 Deposit, Withdrawal, Transaction History, Swaps (soon), Stake (soon), Farm (soon), and more.  
 
